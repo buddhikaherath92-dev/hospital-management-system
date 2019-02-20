@@ -9,7 +9,7 @@
 
             <br />
             <a href="{{ route('login') }}" class="btn btn-primary btn-lg">Sign In</a>
-            <a href="{{ route('register') }}" class="btn btn-info btn-lg">Sign Up</a>
+            <a href="{{ route('show_registration') }}" class="btn btn-info btn-lg">Sign Up</a>
         </div>
     </div>
 @endsection

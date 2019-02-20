@@ -21,6 +21,10 @@ Route::group(['prefix'=>'patient'], function(){
     Route::get('/landing', function () {
         return view('patient.pages.landing');
     });
+    Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('show_registration');
+    Route::get('/details', function () {
+        return view('patient.pages.patient_details');
+    })->name('show_patient_details');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
