@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::group(['prefix'=>'patient'], function(){
+    Route::get('/landing', function () {
+        return view('patient.pages.landing');
+    });
+});
+
+Route::get('/home', 'HomeController@index')->name('home');
