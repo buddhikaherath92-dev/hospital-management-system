@@ -25,7 +25,7 @@ Route::group(['prefix'=>'patient'], function(){
     Route::get('/details', 'PatientDetailContoller@show')->name('show_patient_details');
     Route::post('/details', 'PatientDetailContoller@store')->name('save_patient_details');
     Route::get('/dashboard', function (){
-        return view('patient.pages.dashboard');
+        return view('patient.pages.dashboard_main');
     })->name('show_patient_dashboard');
 });
 

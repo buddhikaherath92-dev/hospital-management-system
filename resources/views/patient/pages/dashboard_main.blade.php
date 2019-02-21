@@ -5,8 +5,8 @@
     <div class="container">
         <h3 class="display-4 text-center">Patient Dashboard</h3>
     </div>
-    <div class="row">
-        <div class="col-xl-1"></div>
+    <div class="row" style="margin: 0">
+        <div class="col-auto"></div>
         <div class="col-xl-2">
             <div class="col-12">
                 <div class="list-group" id="list-tab" role="tablist">
@@ -18,11 +18,10 @@
             </div>
         </div>
         <div class="col-xl-8">
-            <div class="col-8">
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                         <div class="container shadow p-5">
-                            <form action="{{ route('save_patient_details') }}" method="post">
+                            <form action="" method="post">
                                 <div class="form-group">
                                     <label>Full Name</label>
                                     <input type="text" class="form-control" name="full_name" value="{{ old('full_name') }}">
@@ -150,11 +149,116 @@
                             </form>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
-                    <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
-                    <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+                    <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                        <div class="container shadow p-5">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">
+                        <div class="container shadow p-5">
+                            <h4>Organs</h4>
+                            <br>
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Handle</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <br>
+                            <h4>Donate an Organ</h4>
+                            <br>
+                            <form action="" class="">
+                                <div class="form-row">
+                                    <div class="form-group col-md-5">
+                                        <label>Organ Name</label>
+                                        <input type="text" class="form-control" name="organ_name" value="{{ old('organ_name') }}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>District</label>
+                                        <input type="text" class="form-control" name="district" value="{{ old('district') }}">
+                                    </div>
+                                </div>
+                                <button class="btn btn-success">Donate</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+                        <div class="container shadow p-5">
+                            <form action="" method="post">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" name="password" value="{{ old('password') }}">
+                                    @if ($errors->has('password'))
+                                        <span class="invalid-feedback" style="display: block">
+                                            <small>{{ $errors->first('password') }}</small>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input type="password" class="form-control" name="password" value="{{ old('confirm_password') }}">
+                                    @if ($errors->has('confirm_password'))
+                                        <span class="invalid-feedback" style="display: block">
+                                            <small>{{ $errors->first('confirm_password') }}</small>
+                                        </span>
+                                    @endif
+                                </div>
+                                <button type="submit" class="btn btn-success">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 @endsection
