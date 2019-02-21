@@ -11,6 +11,9 @@ return [
         'DOCTOR' => 2,
         'PHARMACY' => 3,
         'LAB' => 4
+    ],
+    'patient_categories' =>[
+        'Heart Patient' =>1,
+        'Diabetic Patient' =>2
     ]
-
 ];

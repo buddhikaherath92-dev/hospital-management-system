@@ -18,14 +18,14 @@ class CreatePatientsTable extends Migration
             $table->string('full_name');
             $table->string('address');
             $table->string('tel_no', '15')->nullable();
-            $table->string('blood_group', '4');
+            $table->string('blood_group', '6');
             $table->integer('patient_category');
             $table->longText('medical_condition')->nullable();
             $table->longText('allergies')->nullable();
             $table->float('weight');
             $table->float('height');
             $table->string('age', '5');
-            $table->string('gender', '5');
+            $table->string('gender', '7');
             $table->integer('user_id');
             $table->timestamps();
         });

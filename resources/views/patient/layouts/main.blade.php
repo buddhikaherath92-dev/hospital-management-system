@@ -24,7 +24,7 @@
 </head>
 <body>
 
-
+    @include('patient.templates.header')
     @yield('content')
 
 
