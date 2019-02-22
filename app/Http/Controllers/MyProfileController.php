@@ -7,23 +7,26 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
-class PatientDetailContoller extends Controller
+class MyProfileController extends Controller
 {
     /**
-     * Show the patient detail view
+     * Show patient dashboard
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(){
-        return view('patient.pages.patient_details',[
-            'patient_categories'=>config('constances.patient_categories'),
+        return view('patient.pages.my_profile',[
+            'patient_detail'=>Patient::select('patients.*')->where('user_id',Auth::id())->first(),
+            'patient_categories'=>config('constances.patient_categories')
         ]);
     }
+
     /**
-     * Store Patient details
+     * Update patient details
      * @param Request $request
-     * @return view
+     * @return mixed
      */
-    public function store(Request $request){
+    public function update(Request $request){
+
         $validatedData = $request->validate([
             'full_name' => 'required|max:255',
             'address' => 'required|string',
@@ -37,11 +40,9 @@ class PatientDetailContoller extends Controller
             'allergies' => 'required|string',
             'medical_condition' => 'required|string'
         ]);
-        $validatedData['user_id']=Auth::id();
-        $validatedData['patient_category']=config('constances.patient_categories')[\request('patient_category')];
 
-        $patient_detail=Patient::create($validatedData);
-        return Redirect::route('show_patient_myprofile');
-
+        $patient=Patient::find(request('id'));
+        $patient->update($validatedData);
+        return redirect()->back()->withSuccess('Patient Profile Updated Successfully !');
     }
 }
