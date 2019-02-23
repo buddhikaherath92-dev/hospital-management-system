@@ -31,4 +31,10 @@ Route::group(['prefix'=>'patient'], function() {
     Route::get('/dashboard/settings', 'SettingsController@show')->name('show_settings');
     Route::post('/dashboard/settings', 'SettingsController@update')->name('update_settings');
 });
+Route::group(['prefix'=>'doctor'], function() {
+    Route::get('/patients', 'Doctor\AllPatientsController@show')->name('show_doctor_page');
+    Route::get('/single/{id}', 'Doctor\SinglePatientController@show')->name('show_patient');
+    Route::post('/single/', 'Doctor\DiagnoseController@store')->name('save_diagnose');
+    Route::get('/single/prescription/{diagnose_id}', 'Doctor\PrescriptionController@show')->name('show_prescription');
+});
 Route::get('/home', 'HomeController@index')->name('home');

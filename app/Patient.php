@@ -26,4 +26,12 @@ class Patient extends Model
         'gender',
         'user_id'
     ];
+    /**
+     * Retrieve Relevant Patient fo the user_id
+     * @param $id
+     * @return mixed
+     */
+    public static function getPatient($id){
+        return Patient::where('user_id',$id)->first();
+    }
 }
