@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Redirect;
 class PatientDetailContoller extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Show the patient detail view
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */

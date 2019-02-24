@@ -9,6 +9,15 @@ use App\Http\Controllers\Controller;
 class PrescriptionController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Show the prescription view with data
      * @param $diagnose_id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

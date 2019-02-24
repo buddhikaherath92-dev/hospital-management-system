@@ -10,6 +10,15 @@ use App\Http\Controllers\Controller;
 class SinglePatientController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Show single Patient view
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

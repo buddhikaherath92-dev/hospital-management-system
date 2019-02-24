@@ -29,7 +29,7 @@
                <hr>
                <div class="row">
                    <div class="col-xl-12">
-                       <h6>{{ $diagnose['prescription'] }}</h6>
+                       <pre>{{ $diagnose['prescription'] }}</pre>
                    </div>
                </div>
            </div>

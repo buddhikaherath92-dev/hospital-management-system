@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class DiagnoseController extends Controller
 {
+
     /**
      * Store Diagnose and Prescription
      * @param Request $request
