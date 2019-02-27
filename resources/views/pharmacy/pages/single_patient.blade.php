@@ -70,8 +70,7 @@
                            <input type="text" name="diagnose_id" value="{{ $data['id'] }}" hidden>
                            <br>
                            <div class="float-right">
-                               <button class="btn btn-primary">Print Prescription</button>
-                               <button type="submit" class="btn btn-success">Ready</button>
+                               <button type="submit" class="btn btn-success" {{ $pharmacy['is_ready']=== 1 ? 'hidden' : '' }}>Ready</button>
                            </div>
                        </form>
                    </div>

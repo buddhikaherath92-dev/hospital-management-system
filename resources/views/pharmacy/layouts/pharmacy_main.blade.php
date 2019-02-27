@@ -23,7 +23,7 @@
 
 </head>
 <body>
-    @include('lab.templates.header')
+    @include('pharmacy.templates.header')
     @yield('content')
 </body>
 </html>

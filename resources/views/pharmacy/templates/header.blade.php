@@ -10,7 +10,7 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/lab/request">Pharmacy Dashboard</a>
+                <a class="nav-link" href="/pharmacy/prescriptions">Pharmacy Dashboard</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">

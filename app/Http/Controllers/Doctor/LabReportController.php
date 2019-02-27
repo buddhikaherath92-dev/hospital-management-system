@@ -9,7 +9,11 @@ use App\Http\Controllers\Controller;
 class LabReportController extends Controller
 {
 
-
+    /**
+     * Request lab reports
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request){
         $validatedData = $request->validate([
             'report-title' => 'required',
