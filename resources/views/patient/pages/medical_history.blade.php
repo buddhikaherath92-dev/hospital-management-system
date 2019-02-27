@@ -15,7 +15,7 @@
             <th>{{ 'Dr. '.$diagnose['name'] }}</th>
             <td>{{ $diagnose['diagnose'] }}</td>
             <td>{{ $diagnose['posted_date'] }}</td>
-            <td><a href="{{ url('/doctor/single/prescription/'.$diagnose['id']) }}" class="btn btn-outline-primary">More</a></td>
+            <td><a href="{{ url('/patient/single/'.$diagnose['id']) }}" class="btn btn-outline-primary">More</a></td>
         </tr>
     @endforeach
     </tbody>

@@ -1,4 +1,4 @@
-@extends('doctor.layouts.dashboard')
+@extends('patient.pages.dashboard_main')
 
 @section('child-content')
    <div class="container">
@@ -30,8 +30,15 @@
                <div class="row">
                    <div class="col-xl-12">
                        <pre>{{ $diagnose['prescription'] }}</pre>
+
                    </div>
                </div>
+               <div class="row">
+                   <div class="col-xl-12">
+                        <p>Status : {{ $diagnose['is_ready'] === 1?'Ready': 'Not yet'}}</p>
+                   </div>
+               </div>
+           </div>
            </div>
        </div>
    </div>

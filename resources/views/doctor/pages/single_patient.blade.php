@@ -59,9 +59,49 @@
                    <label>Prescription :</label>
                    <textarea name="prescription" class="form-control"></textarea>
                    <br>
+                   <div class="form-row">
+                       <div class="col-md-3">
+                           <select class="form-control" name="pharmacy_type">
+                               <option value="0">From Our Pharmacy</option>
+                               <option value="1">From Out</option>
+                           </select>
+                       </div>
+                   </div>
                    <div class="float-right">
                        <button type="submit" class="btn btn-success">Save</button>
                    </div>
+               </form>
+           </div>
+       </div>
+   </div>
+   <div class="container">
+       <div class="card w-100">
+           <div class="card-body">
+               <h3 class="card-title">Lab Reports</h3>
+               <hr>
+               <form action="{{ route('request_report') }}" method="post">
+                   {{ csrf_field() }}
+                   @if(session('message'))
+                       <div class="alert alert-success alert-dismissible fade show" role="alert">
+                           <strong>{{session('message')}}</strong>
+                           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                           </button>
+                       </div>
+                   @endif
+
+                   <input type="text" name="diagnose_id" value="{{ session('diagnose_id') === null ? old('diagnose_id') : session('diagnose_id') }}" hidden>
+
+                   <label>Report Title :</label>
+                   <input type="text" class="form-control" name="report-title">
+                   <br>
+                   <label>Report Description :</label>
+                   <textarea name="report-description" class="form-control"></textarea>
+                   <br>
+                   <div class="float-right">
+                       <button type="submit" class="btn btn-success">Request Report</button>
+                   </div>
+
                </form>
            </div>
        </div>

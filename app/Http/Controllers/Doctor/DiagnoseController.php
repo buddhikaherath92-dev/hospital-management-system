@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Diagnose;
+use App\Pharmacy;
 use App\Prescription;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -35,8 +36,14 @@ class DiagnoseController extends Controller
                 'prescription'=>$validatedData['prescription'],
                 'diagnose_id'=>$result['id']
             ]);
+            if (request('pharmacy_type') === '0' ){
+                Pharmacy::create([
+                   'diagnose_id'=>$result['id'],
+                   'is_ready'=>false,
+                ]);
+            }
             DB::commit();
-            return redirect()->back()->withSuccess('Diagnose Added Successfully !');
+            return redirect()->back()->with('diagnose_id',$result['id'])->withSuccess('Diagnose Added Successfully !');
         }catch (Exception $exception){
             DB::rollback();
             return redirect()->back()->withErrors('Something went wrong !');

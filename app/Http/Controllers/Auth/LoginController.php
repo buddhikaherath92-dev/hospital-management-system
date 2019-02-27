@@ -47,7 +47,20 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        $this->redirectTo = $user->user_type == 1 ? '/patient/dashboard' : '/doctor/patients';
+        switch ($user->user_type){
+            case 1:
+                $this->redirectTo='/patient/dashboard';
+                break;
+            case 2:
+                $this->redirectTo='/doctor/patients';
+                break;
+            case 3:
+                $this->redirectTo='/pharmacy/prescriptions';
+                break;
+            case 4:
+                $this->redirectTo='/lab/request';
+                break;
+        }
     }
 
 }

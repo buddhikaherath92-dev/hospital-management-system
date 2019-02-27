@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div class="jumbotron mt-lg-5">
-            <h3 class="text-center"> Ruhunu Hospitals - Patients Registration</h3>
+        <div class="mt-lg-5">
+            <h3 class="text-center"> Hospital System - Patients Registration</h3>
             <hr />
             <div class="row justify-content-center">
                 <div class="col-md-8">

@@ -73,6 +73,8 @@
                             <a href="{{ url('/patient/dashboard/') }}">Patient Dashboard</a>
                         @elseif(Auth::user()->user_type === 2)
                             <a href="{{ url('/doctor/patients') }}">Doctor Dashboard</a>
+                        @elseif(Auth::user()->user_type === 4)
+                            <a href="{{ url('/lab/request') }}">Laboratory Dashboard</a>
                         @endif
                     @else
                         <a href="{{ route('login') }}">Login</a>
