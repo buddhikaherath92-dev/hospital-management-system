@@ -10,7 +10,10 @@
                 <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link {{Route::currentRouteName()  === 'show_doctor_page' ? 'active': ''}}" href="/">Doctor Dashboard</a>
+                <a class="nav-link {{Route::currentRouteName()  === 'show_doctor_page' ? 'active': ''}}" href="/doctor/patients/">Doctor Dashboard</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link {{Route::currentRouteName()  === 'show_all_donations_page' ? 'active': ''}}" href="/doctor/all_donations/">Donations</a>
             </li>
         </ul>
 

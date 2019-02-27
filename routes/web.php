@@ -28,6 +28,7 @@ Route::group(['prefix'=>'patient'], function() {
     Route::post('/dashboard', 'MyProfileController@update')->name('update_myprofile');
     Route::get('/dashboard/history', 'MedicalHistoryController@show')->name('show_patient_medical_history');
     Route::get('/dashboard/donation', 'DonationController@show')->name('show_donation');
+    Route::post('/dashboard/donation', 'DonationController@store')->name('store_donation');
     Route::get('/dashboard/settings', 'SettingsController@show')->name('show_settings');
     Route::post('/dashboard/settings', 'SettingsController@update')->name('update_settings');
     Route::get('/single/{id}', 'SingleDiagnoseController@show')->name('show_single_diagnose');
@@ -39,6 +40,7 @@ Route::group(['prefix'=>'doctor'], function() {
     Route::get('/single/prescription/{diagnose_id}', 'Doctor\PrescriptionController@show')->name('show_prescription');
     Route::get('/search/', 'Doctor\SearchController@show')->name('search_patient');
     Route::post('/lab/', 'Doctor\LabReportController@store')->name('request_report');
+    Route::get('/all_donations', 'Doctor\AllDonationsController@show')->name('show_all_donations_page');
 });
 Route::group(['prefix'=>'lab'], function() {
     Route::get('/request', 'Lab\RequestController@show')->name('show_requests');

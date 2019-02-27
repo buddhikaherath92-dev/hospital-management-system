@@ -5,46 +5,67 @@
 <table class="table table-hover">
     <thead class="thead-dark">
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Donation ID</th>
+        <th scope="col">Organ Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Type</th>
+        <th scope="col">Posted Date</th>
     </tr>
     </thead>
     <tbody>
+    @foreach($donations as $donation)
     <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
+        <th scope="row">{{ $donation['id'] }}</th>
+        <td>{{ $donation['organ_name'] }}</td>
+        <td>{{ $donation['description'] }}</td>
+        <td>{{ $donation['type'] }}</td>
+        <td>{{ $donation['posted_date'] }}</td>
     </tr>
-    <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-    </tr>
-    <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-    </tr>
+    @endforeach
     </tbody>
 </table>
 <br>
-<h4>Donate an Organ</h4>
+<hr>
 <br>
-<form action="" class="">
-    <div class="form-row">
-        <div class="form-group col-md-5">
-            <label>Organ Name</label>
-            <input type="text" class="form-control" name="organ_name" value="{{ old('organ_name') }}">
-        </div>
-        <div class="form-group col-md-4">
-            <label>District</label>
-            <input type="text" class="form-control" name="district" value="{{ old('district') }}">
+<div class="container">
+    <div class="card w-100">
+        <div class="card-body">
+            <h3 class="card-title">Organ Donations/Requests</h3>
+            <hr>
+            <form action="{{ route('store_donation') }}" method="post">
+                {{ csrf_field() }}
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>{{session('success')}}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+
+                <div class="form-row">
+                    <div class="col-8">
+                        <label>Organ Name :</label>
+                        <input type="text" class="form-control" name="organ_name">
+                    </div>
+                    <div class="col-4">
+                        <label>Type :</label>
+                        <select type="text" class="form-control" name="type">
+                            <option value="Request">Request</option>
+                            <option value="Donate">Donate</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <label>Description :</label>
+                <textarea name="description" class="form-control"></textarea>
+                <br>
+                <div class="float-right">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+
+            </form>
         </div>
     </div>
-    <button class="btn btn-success">Donate</button>
-</form>
+</div>
 @endsection

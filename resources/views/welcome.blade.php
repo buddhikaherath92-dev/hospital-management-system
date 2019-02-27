@@ -68,7 +68,6 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
                         @if(Auth::user()->user_type === 1)
                             <a href="{{ url('/patient/dashboard/') }}">Patient Dashboard</a>
                         @elseif(Auth::user()->user_type === 2)
