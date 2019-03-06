@@ -24,7 +24,7 @@ class CreatePatientsTable extends Migration
             $table->longText('allergies')->nullable();
             $table->float('weight');
             $table->float('height');
-            $table->string('age', '5');
+            $table->date('dob');
             $table->string('gender', '7');
             $table->integer('user_id');
             $table->timestamps();

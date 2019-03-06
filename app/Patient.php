@@ -22,7 +22,7 @@ class Patient extends Model
         'allergies',
         'weight',
         'height',
-        'age',
+        'dob',
         'gender',
         'user_id'
     ];

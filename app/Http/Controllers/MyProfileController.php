@@ -42,7 +42,7 @@ class MyProfileController extends Controller
             'tel_no' => 'required|numeric',
             'gender' => 'required|string',
             'blood_group'=>'required|string',
-            'age' => 'required|numeric',
+            'dob' => 'required',
             'height' => 'required|string',
             'weight' => 'required|string',
             'patient_category' => 'required|string',

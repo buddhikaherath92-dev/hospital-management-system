@@ -1,12 +1,12 @@
 @extends('doctor.layouts.dashboard')
 
 @section('child-content')
-    <h4 class="">All Donations</h4>
+    <h4 class="">All Donations/Requests</h4>
     <hr><br>
     <table class="table table-hover">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Donation ID</th>
+            <th scope="col">Donation/Request ID</th>
             <th scope="col">Patient Name</th>
             <th scope="col">Organ Name</th>
             <th scope="col">Description</th>

@@ -74,8 +74,8 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
-                <label>Age</label>
-                <input type="text" class="form-control" name="age" value="{{ $patient_detail['age']  }}">
+                <label>Date of Birth</label>
+                <input type="date" class="form-control" name="dob" value="{{ $patient_detail['age']  }}">
                 @if ($errors->has('age'))
                     <span class="invalid-feedback" style="display: block">
                     <small>{{ $errors->first('age') }}</small>
@@ -83,7 +83,8 @@
                 @endif
             </div>
             <div class="form-group col-md-3">
-                <label>Height</label>
+                <label>Height</label><span> (m)</span>
+
                 <input type="text" class="form-control" name="height" value="{{ $patient_detail['height']  }}">
                 @if ($errors->has('height'))
                     <span class="invalid-feedback" style="display: block">
@@ -92,7 +93,7 @@
                 @endif
             </div>
             <div class="form-group col-md-3">
-                <label>Weight</label>
+                <label>Weight</label><span> (kg)</span>
                 <input type="text" class="form-control" name="weight" value="{{ $patient_detail['weight']  }}">
                 @if ($errors->has('weight'))
                     <span class="invalid-feedback" style="display: block">

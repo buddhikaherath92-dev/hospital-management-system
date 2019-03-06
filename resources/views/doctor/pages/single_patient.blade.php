@@ -62,8 +62,8 @@
                    <div class="form-row">
                        <div class="col-md-3">
                            <select class="form-control" name="pharmacy_type">
-                               <option value="0">From Our Pharmacy</option>
-                               <option value="1">From Out</option>
+                               <option value="0">From Hospital Pharmacy</option>
+                               <option value="1">From External Pharmacy</option>
                            </select>
                        </div>
                    </div>

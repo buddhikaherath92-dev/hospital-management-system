@@ -5,7 +5,7 @@
 <table class="table table-hover">
     <thead class="thead-dark">
     <tr>
-        <th scope="col">Donation ID</th>
+        <th scope="col">Donation/Request ID</th>
         <th scope="col">Organ Name</th>
         <th scope="col">Description</th>
         <th scope="col">Type</th>

@@ -14,6 +14,7 @@ return [
     ],
     'patient_categories' =>[
         'Heart Patient' =>1,
-        'Diabetic Patient' =>2
+        'Diabetic Patient' =>2,
+        'General' =>3
     ]
 ];
