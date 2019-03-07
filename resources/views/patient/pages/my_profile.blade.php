@@ -141,4 +141,36 @@
             </div>
         </div>
     </form>
+
+    <h4>Emergency Details</h4>
+    <form action="{{route('emergency')}}" method="post">
+        {{csrf_field()}}
+        <div class="form-group">
+            <label for="formGroupExampleInput">Contact Name</label>
+            <input type="text" name="contact_name" class="form-control" id="formGroupExampleInput" placeholder="Contact Name">
+        </div>
+        <div class="form-group">
+            <label for="formGroupExampleInput2">Contact Number</label>
+            <input type="text" name="tel" class="form-control" id="formGroupExampleInput2" placeholder="Contact Number">
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+
+    <h4>Emergency Details</h4>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Contact Name</th>
+            <th scope="col">Telephone Number</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($details as $detail)
+            <tr>
+                <td>{{$detail->contact_name}}</td>
+                <td>{{$detail->tel}}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 @endsection

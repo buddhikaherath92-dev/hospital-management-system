@@ -16,8 +16,8 @@
                    <div class="col-xl-6">
                        <h6><b>Patient Category : </b>{{ array_search($patient['patient_category'],config('constances.patient_categories')) }}</h6>
                        <h6><b>Blood Group : </b>{{ $patient['blood_group'] }}</h6>
-                       <h6><b>Weight : </b>{{ $patient['weight'] }}</h6>
-                       <h6><b>Height : </b>{{ $patient['height'] }}</h6>
+                       <h6><b>Weight(kg) : </b>{{ $patient['weight'] }}</h6>
+                       <h6><b>Height(m) : </b>{{ $patient['height'] }}</h6>
                    </div>
 
                </div>

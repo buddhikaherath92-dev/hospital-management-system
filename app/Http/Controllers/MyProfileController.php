@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\EmergencyDetail;
 use App\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,9 +24,10 @@ class MyProfileController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(){
+        $data=EmergencyDetail::where('patient_id',Auth::id())->get();
         return view('patient.pages.my_profile',[
             'patient_detail'=>Patient::select('patients.*')->where('user_id',Auth::id())->first(),
-            'patient_categories'=>config('constances.patient_categories')
+            'patient_categories'=>config('constances.patient_categories'),'details'=>$data
         ]);
     }
 

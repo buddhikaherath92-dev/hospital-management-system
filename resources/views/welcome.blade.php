@@ -91,7 +91,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Hospital System
+                    Hospital Information System
                 </div>
 
                 <div class="links">

@@ -32,6 +32,9 @@ Route::group(['prefix'=>'patient'], function() {
     Route::get('/dashboard/settings', 'SettingsController@show')->name('show_settings');
     Route::post('/dashboard/settings', 'SettingsController@update')->name('update_settings');
     Route::get('/single/{id}', 'SingleDiagnoseController@show')->name('show_single_diagnose');
+    Route::post('/attach_report', 'PatientReportController@store')->name('attach_report');
+    Route::get('/completed_request/download/{report_id}', 'PatientReportController@download')->name('download_patient_report');
+    Route::post('/emergency', 'EmergencyDetailsController@store')->name('emergency');
 });
 Route::group(['prefix'=>'doctor'], function() {
     Route::get('/patients', 'Doctor\AllPatientsController@show')->name('show_doctor_page');

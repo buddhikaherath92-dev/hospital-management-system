@@ -73,6 +73,19 @@
                    @endforeach
                    </tbody>
                </table>
+               <h4>Attach a report</h4>
+               <form action="{{route('attach_report')}}" method="post" enctype="multipart/form-data">
+                   {{csrf_field()}}
+                   <div class="form-group">
+                       <label for="exampleFormControlFile1">Report Title</label>
+                       <input type="text" name="title" class="form-control-file" id="exampleFormControlFile1">
+                   </div>
+                   <div class="form-group">
+                       <label for="exampleFormControlFile1">Upload your report</label>
+                       <input type="file" name="report" class="form-control-file" id="exampleFormControlFile1">
+                   </div>
+                   <button class="btn btn-success" type="submit">Upload Report</button>
+               </form>
            </div>
        </div>
    </div>
