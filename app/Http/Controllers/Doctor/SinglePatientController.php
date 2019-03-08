@@ -26,7 +26,8 @@ class SinglePatientController extends Controller
     public function show($id){
         return view('doctor.pages.single_patient',[
             'patient'=>Patient::where('id',$id)->first(),
-            'diagnoses'=>Diagnose::joinDiagnose()->where('patients.id',$id)->get()
+            'diagnoses'=>Diagnose::joinDiagnose()->where('patients.id',$id)->get(),
+            'patient_categories'=>config('constances.patient_categories'),
         ]);
     }
 }

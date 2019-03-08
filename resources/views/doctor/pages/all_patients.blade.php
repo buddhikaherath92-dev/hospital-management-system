@@ -29,4 +29,19 @@
         @endforeach
         </tbody>
     </table>
+
+    <h4>Reports</h4>
+
+    <table class="table table-hover">
+        <thead class="thead bg-primary">
+        <tr>
+            <th scope="col">Reports</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr><td><button class="btn btn-success">Report 1</button></td></tr>
+        <tr><td><button class="btn btn-success">Report 2</button></td></tr>
+        <tr><td><button class="btn btn-success">Report 3</button></td></tr>
+        </tbody>
+    </table>
 @endsection

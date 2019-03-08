@@ -2,6 +2,11 @@
 @section('child-content')
 <h4>Organs</h4>
 <br>
+<a class="btn btn-primary" href="{{route('show_donation')}}">All</a>
+<a class="btn btn-success" href="{{route('get_all_donations')}}">Donations</a>
+<a class="btn btn-danger" href="{{route('get_all_requests')}}">Requests</a>
+<br>
+<br>
 <table class="table table-hover">
     <thead class="thead-dark">
     <tr>

@@ -133,5 +133,47 @@
                 </table>
             </div>
         </div>
+        <br>
+        <h4>Add Event</h4>
+        <br>
+        <form action="{{route('add_event')}}" method="post">
+            {{csrf_field()}}
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="validationDefault01">Event Name</label>
+                    <input type="text" name="name" class="form-control" id="validationDefault01" placeholder="Event Name" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="validationDefault02">Patient Type</label>
+                    <select id="inputState" name="type" class="form-control">
+                        @foreach($patient_categories as $catName => $catIndex)
+                            <option >{{ $catName }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="validationDefaultUsername">Date</label>
+                    <div class="input-group">
+                        <input type="date" name="date" class="form-control" id="validationDefaultUsername" placeholder="Date" aria-describedby="inputGroupPrepend2" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault01">Event Description</label>
+                <textarea type="text" name="description" class="form-control" id="validationDefault01" placeholder="Event Name" value="Mark" required></textarea>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="validationDefault03">Time</label>
+                    <input type="time" name="time" class="form-control" id="validationDefault03" placeholder="Time" required>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="validationDefault04">Venue</label>
+                    <input type="text" name="venue" class="form-control" id="validationDefault04" placeholder="Venue" required>
+                </div>
+            </div>
+            <input type="hidden" name="patient_id" value="{{ $patient['user_id'] }}">
+            <button class="btn btn-primary" type="submit">Submit Event</button>
+        </form>
     </div>
 @endsection

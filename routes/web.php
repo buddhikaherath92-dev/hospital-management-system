@@ -35,6 +35,10 @@ Route::group(['prefix'=>'patient'], function() {
     Route::post('/attach_report', 'PatientReportController@store')->name('attach_report');
     Route::get('/completed_request/download/{report_id}', 'PatientReportController@download')->name('download_patient_report');
     Route::post('/emergency', 'EmergencyDetailsController@store')->name('emergency');
+    Route::get('/dashboard/all_donations', 'DonationController@showDonations')->name('get_all_donations');
+    Route::get('/dashboard/all_requests', 'DonationController@showRequests')->name('get_all_requests');
+    Route::get('/getPDF', 'PDFController@getPDF')->name('get_pdf');
+    Route::post('/add_event', 'Doctor\EventController@store')->name('add_event');
 });
 Route::group(['prefix'=>'doctor'], function() {
     Route::get('/patients', 'Doctor\AllPatientsController@show')->name('show_doctor_page');

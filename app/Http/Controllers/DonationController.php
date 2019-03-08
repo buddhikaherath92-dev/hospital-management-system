@@ -38,4 +38,24 @@ class DonationController extends Controller
         Donation::create($validatedData);
         return Redirect::back()->withSuccess('Donation request submitted successfully !');
     }
+
+    /**
+     * Show Donation page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showDonations(){
+        return view('patient.pages.organ',[
+            'donations'=>Donation::where('patient_id',Patient::getPatient(Auth::id())['id'])->where('type','Donate')->get()
+        ]);
+    }
+
+    /**
+     * Show Donation page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showRequests(){
+        return view('patient.pages.organ',[
+            'donations'=>Donation::where('patient_id',Patient::getPatient(Auth::id())['id'])->where('type','Request')->get()
+        ]);
+    }
 }
