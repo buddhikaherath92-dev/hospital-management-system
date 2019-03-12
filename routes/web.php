@@ -48,6 +48,9 @@ Route::group(['prefix'=>'doctor'], function() {
     Route::get('/search/', 'Doctor\SearchController@show')->name('search_patient');
     Route::post('/lab/', 'Doctor\LabReportController@store')->name('request_report');
     Route::get('/all_donations', 'Doctor\AllDonationsController@show')->name('show_all_donations_page');
+    Route::get('/all_users', 'Doctor\NewDoctorController@show')->name('show_all_users');
+    Route::post('/add_users', 'Doctor\NewDoctorController@store')->name('add_doctors');
+    Route::get('/all_appoinments', 'Nurse\AppoinmentController@show')->name('show_all_appoinments');
 });
 Route::group(['prefix'=>'lab'], function() {
     Route::get('/request', 'Lab\RequestController@show')->name('show_requests');
@@ -55,11 +58,23 @@ Route::group(['prefix'=>'lab'], function() {
     Route::post('/single_request/', 'Lab\SingleRequestController@update')->name('ready_request');
     Route::get('/completed_request/{report_id}', 'Lab\CompletedRequestsController@show')->name('completed_request');
     Route::get('/completed_request/download/{report_id}', 'Lab\CompletedRequestsController@download')->name('download_report');
+    Route::get('/all_users', 'Lab\NewLabController@show')->name('show_all_lab');
+    Route::post('/add_users', 'Lab\NewLabController@store')->name('add_labuser');
 });
 Route::group(['prefix'=>'pharmacy'], function() {
     Route::get('/prescriptions', 'Pharmacy\AllPrescriptionController@show')->name('show_all_prescriptions');
     Route::get('/single/{id}', 'Pharmacy\SinglePatientPrescriptionController@show')->name('show_single_prescriptions');
     Route::post('/single/', 'Pharmacy\SinglePatientPrescriptionController@update')->name('update_prescription');
+    Route::get('/all_users', 'Pharmacy\NewPharmacyController@show')->name('show_all_pharmacy');
+    Route::post('/add_users', 'Pharmacy\NewPharmacyController@store')->name('add_pharmacy');
+});
+
+Route::group(['prefix'=>'nurse'], function() {
+    Route::get('/dashboard', 'Nurse\NurseDashboardController@show')->name('show_nurse_dashboard');
+    Route::post('/make_appoinment', 'Nurse\AppoinmentController@store')->name('make_appoinment');
+    Route::get('/all_users', 'Nurse\NewNurseController@show')->name('show_all_nurse');
+    Route::post('/add_users', 'Nurse\NewNurseController@store')->name('add_nurse');
+    Route::post('/search_nurse', 'Nurse\SearchController@show')->name('search_nurse');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

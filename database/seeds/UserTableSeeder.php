@@ -33,6 +33,13 @@ class UserTableSeeder extends Seeder
                 'user_type' => (int)3,
                 'password' => bcrypt('pharmacypass'),
                 'email_verified_at'=>Carbon::now()
+            ],
+            [
+                'name' => 'Nurse',
+                'email' => 'nurse@gmail.com',
+                'user_type' => (int)5,
+                'password' => bcrypt('nursepass'),
+                'email_verified_at'=>Carbon::now()
             ]
         ]);
     }

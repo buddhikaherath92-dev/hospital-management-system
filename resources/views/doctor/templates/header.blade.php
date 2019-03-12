@@ -15,6 +15,12 @@
             <li class="nav-item ">
                 <a class="nav-link {{Route::currentRouteName()  === 'show_all_donations_page' ? 'active': ''}}" href="/doctor/all_donations/">Donations</a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link {{Route::currentRouteName()  === 'show_all_users' ? 'active': ''}}" href="/doctor/all_users/">Users</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link {{Route::currentRouteName()  === 'show_all_appoinments' ? 'active': ''}}" href="/doctor/all_appoinments/">Appoinments</a>
+            </li>
         </ul>
 
         <ul class="navbar-nav ml-auto">

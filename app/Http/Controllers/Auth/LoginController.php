@@ -59,6 +59,8 @@ class LoginController extends Controller
                 break;
             case 4:
                 $this->redirectTo='/lab/request';
+            case 5:
+                $this->redirectTo='/nurse/dashboard';
                 break;
         }
     }

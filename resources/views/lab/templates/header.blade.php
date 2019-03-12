@@ -12,6 +12,9 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/lab/request">Laboratory Dashboard</a>
             </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/lab/all_users">Users</a>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             @if(Auth::user() !== null)
