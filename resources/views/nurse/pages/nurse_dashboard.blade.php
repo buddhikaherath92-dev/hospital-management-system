@@ -26,7 +26,7 @@
                             <td>{{$patient->address}}</td>
                             <td>{{config('constances.patient_categories_inverse')[$patient->patient_category]}}</td>
                             <td>{{$patient->dob}}</td>
-                            <td>{{$patient->tel_no}}</td>
+                            <td>{{$patient->gender}}</td>
                             <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" onclick="functionHere(this)" value="{{$patient->id}}" data-toggle="modal" data-target="#edit" id="btnAppoinment" >Make Appoinment</button></p></td>
                         </tr>
                             @endforeach
