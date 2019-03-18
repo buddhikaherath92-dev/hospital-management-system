@@ -12,6 +12,6 @@ class Appoinment extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'date', 'doctor', 'patient_id','isAppointed'
+        'title','time' ,'date', 'doctor', 'patient_id','isAppointed'
     ];
 }

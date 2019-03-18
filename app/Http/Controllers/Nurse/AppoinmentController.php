@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Nurse;
 
 use App\Appoinment;
+use App\Patient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,7 +20,6 @@ class AppoinmentController extends Controller
      */
     public function show()
     {
-
         $appoinments = Appoinment::where('doctor',Auth::user()->name)->where('date',Carbon::today())->get();
         return view('doctor.pages.all_appoinments',['appoinments' => $appoinments]);
     }
@@ -34,13 +34,16 @@ class AppoinmentController extends Controller
     {
         $data = request()->validate([
             'title' => 'required|string',
+            'time' => 'required',
             'date' => 'required|date',
             'doctor' => 'required|string',
             'patient_id' => 'required'
         ]);
         $data['isAppointed'] = '1';
-        Appoinment::create($data);
-        return redirect()->back()->with('message','Appointed Successfully');
+        $response = Appoinment::updateOrCreate(['date'=>$data['date'],
+            'patient_id'=>Patient::where('id',$data['patient_id'])->value('id')],$data);
+        return $response->wasRecentlyCreated == true ? redirect()->back()->with('message','Appointed Successfully') :
+            redirect()->back()->with('message','Appointment Made Before');
     }
 
     /**

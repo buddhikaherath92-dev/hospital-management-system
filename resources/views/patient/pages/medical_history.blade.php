@@ -69,7 +69,27 @@
     @endforeach
     </tbody>
 </table>
-    <h4>Download Prescription</h4>
-<a class="btn btn-danger" href="{{route('get_pdf')}}">Download Prescriptions</a>
+    {{--<h4>Download Prescription</h4>--}}
+{{--<a class="btn btn-danger" href="{{route('get_pdf')}}">Download Prescriptions</a>--}}
 
+<br>
+<h4>Events</h4>
+<table class="table table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Diagnose</th>
+        <th scope="col">Prescription</th>
+        <th scope="col">Download</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach($prescriptions as $prescription)
+        <tr>
+            <td>{{$prescription->diagnose}}</td>
+            <td>{{$prescription->prescription}}</td>
+            <td><a class="btn btn-danger" href="/patient/getPDF/{{$prescription->diagnose_id}}">Download Prescriptions</a></td>
+        </tr>
+    @endforeach
+    </tbody>
+</table>
 @endsection

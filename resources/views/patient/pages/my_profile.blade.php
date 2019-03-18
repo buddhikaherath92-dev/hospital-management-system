@@ -75,7 +75,7 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label>Date of Birth</label>
-                <input type="date" class="form-control" name="dob" value="{{ $patient_detail['age']  }}">
+                <input type="date" class="form-control" name="dob" value="{{ $patient_detail['dob']  }}">
                 @if ($errors->has('age'))
                     <span class="invalid-feedback" style="display: block">
                     <small>{{ $errors->first('age') }}</small>
@@ -153,7 +153,7 @@
             <label for="formGroupExampleInput2">Contact Number</label>
             <input type="text" name="tel" class="form-control" id="formGroupExampleInput2" placeholder="Contact Number">
         </div>
-        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-primary" type="submit">Save or Update</button>
     </form>
 
     <h4>Emergency Details</h4>

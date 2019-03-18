@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 
-use App\Diagnose;
 use App\Patient;
-use App\Prescription;
+
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -17,13 +16,13 @@ class PDFController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getPDF()
+    public function getPDF($id)
     {
-        $patientId=Patient::where('user_id',Auth::id())->value('id');
         $prescription=DB::table('prescriptions')
             ->select('prescriptions.prescription','diagnoses.diagnose')
             ->join('diagnoses','prescriptions.diagnose_id','=','diagnoses.id')
-            ->where('patient_id',$patientId)
+            ->where('patient_id',Patient::where('user_id',Auth::id())->value('id'))
+            ->where('diagnose_id',$id)
             ->get();
         $pdf = PDF::loadView('patient.pages.prescription',['prescriptions' => $prescription]);
         return $pdf->download('prescription.pdf');

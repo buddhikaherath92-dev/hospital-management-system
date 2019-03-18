@@ -8,24 +8,17 @@ use Illuminate\Support\Facades\Auth;
 
 class EmergencyDetailsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
-     * Show the form for creating a new resource.
+     * Display the specified resource.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function show($id)
     {
-        //
+        $data=EmergencyDetail::where('patient_id',Auth::id())->get();
+        return view('patient.pages.my_profile',['details'=>$data]);
     }
 
     /**
@@ -41,31 +34,8 @@ class EmergencyDetailsController extends Controller
             'tel' => 'required|numeric',
         ]);
         $data['patient_id']=Auth::id();
-        EmergencyDetail::create($data);
+        EmergencyDetail::updateOrCreate(['patient_id'=>Auth::id()],$data);
         return redirect()->route('show_patient_myprofile');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $data=EmergencyDetail::where('patient_id',Auth::id())->get();
-        return view('patient.pages.my_profile',['details'=>$data]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -80,14 +50,4 @@ class EmergencyDetailsController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

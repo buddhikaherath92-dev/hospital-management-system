@@ -10,7 +10,6 @@
                 <h4>All Patients</h4>
                 <div class="table-responsive">
                     <table id="mytable" class="table table-bordred table-striped">
-
                         <thead>
                         <th>Full Name</th>
                         <th>Address</th>
@@ -49,10 +48,11 @@
                     {{csrf_field()}}
                 <div class="modal-body">
                     <div class="form-group">
-                        <input class="form-control " name="title" type="text" placeholder="Title">
+                        <input class="form-control " name="title" type="text" placeholder="Name">
                     </div>
                     <div class="form-group">
-
+                            <input type="time" name="time" class="form-control" id="validationDefault03" placeholder="Time" required>
+                        <br>
                         <input class="form-control " name="date" type="date" placeholder="Date">
                     </div>
                     <div class="form-group">

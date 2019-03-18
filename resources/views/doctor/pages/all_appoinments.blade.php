@@ -8,6 +8,7 @@
         <th>Patient ID</th>
         <th>Title</th>
         <th>Date</th>
+        <th>More</th>
         </thead>
         <tbody>
         @foreach($appoinments as $appoinment)
@@ -15,6 +16,7 @@
                 <td>{{$appoinment->patient_id}}</td>
                 <td>{{$appoinment->title}}</td>
                 <td>{{$appoinment->date}}</td>
+                <td><a href="{{ url('/doctor/single/'.$appoinment->patient_id) }}" class="btn btn-outline-primary">More</a></td>
             </tr>
         @endforeach
         </tbody>
