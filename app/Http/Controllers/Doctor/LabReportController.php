@@ -15,6 +15,7 @@ class LabReportController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request){
+
         $validatedData = $request->validate([
             'report-title' => 'required',
             'report-description' => 'string|required',
@@ -23,8 +24,8 @@ class LabReportController extends Controller
             'title'=>$validatedData['report-title'],
             'description'=>$validatedData['report-description'],
             'is_ready'=>(int)0,
+            'patient_id'=>$request->patient_id,
             'diagnose_id'=>request('diagnose_id'),
-
         ]);
         return redirect()->back()->with('diagnose_id',request('diagnose_id'))->with('message',$validatedData['report-title'].' report requested successfully !');
     }

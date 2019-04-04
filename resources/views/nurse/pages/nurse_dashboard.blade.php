@@ -37,6 +37,41 @@
         </div>
     </div>
 
+    <div class="jumbotron">
+        <h6>Make Appoinments for unregistered patients</h6>
+        <form action="{{route('make_appoinment_unregistered')}}" method="post">
+            {{csrf_field()}}
+            <div class="modal-body">
+                <div class="form-group">
+                    <input class="form-control " name="name" type="text" placeholder="Patient Name">
+                </div>
+                <div class="form-group">
+                    <input class="form-control " name="title" type="text" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <input type="time" name="time" class="form-control" id="validationDefault03" placeholder="Time" required>
+                    <br>
+                    <input class="form-control " name="date" type="date" placeholder="Date">
+                </div>
+                <div class="form-group">
+                    <select class="custom-select custom-select-sm" name="doctor">
+                        <option selected>Select a doctor</option>
+                        @foreach($doctors as $doctor)
+                            <option>{{$doctor->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+
+            </div>
+            <div class="modal-footer ">
+
+                <button type="submit" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Make Appoinment</button>
+            </div>
+        </form>
+    </div>
+
+
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

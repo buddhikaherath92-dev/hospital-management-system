@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Diagnose;
 use App\Event;
+use App\Laboratory;
 use App\Patient;
 use App\PatientReport;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class MedicalHistoryController extends Controller
     public function show(){
         return view('patient.pages.medical_history',[
             'diagnoses'=>Diagnose::joinDiagnose()->where('patients.id',Patient::getPatient(Auth::id())['id'])->get(),
-            'reports'=>PatientReport::all(),'events'=>Event::where('patient_id',Auth::id())->get(),
+            'reports'=>PatientReport::where('patient_id',Auth::id())->get(),'events'=>Event::where('patient_id',Auth::id())->get(),
+            'doctor_reports'=>Laboratory::where('patient_id',Patient::where('user_id',Auth::id())->value('id'))->get(),
             'prescriptions'=> DB::table('prescriptions')
                 ->select('prescriptions.prescription','diagnoses.diagnose','prescriptions.diagnose_id')
                 ->join('diagnoses','prescriptions.diagnose_id','=','diagnoses.id')

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Laboratory extends Model
+class UnregisteredAppoinment extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,12 +12,6 @@ class Laboratory extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
-        'title',
-        'description',
-        'report',
-        'patient_id',
-        'diagnose_id',
-        'is_ready'
+        'name','title','time' ,'date', 'doctor','isAppointed'
     ];
 }

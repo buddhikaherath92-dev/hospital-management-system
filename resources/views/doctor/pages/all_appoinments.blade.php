@@ -22,4 +22,24 @@
         </tbody>
     </table>
 </div>
+
+<div class="jumbotron">
+    <h6>Patients not registered</h6>
+    <table class="table table-bordered">
+        <thead class="bg-success">
+        <th>Name</th>
+        <th>Title</th>
+        <th>Date</th>
+        </thead>
+        <tbody>
+        @foreach($unreg_appoinments as $appoinment)
+            <tr>
+                <td>{{$appoinment->name}}</td>
+                <td>{{$appoinment->title}}</td>
+                <td>{{$appoinment->date}}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>
 @endsection

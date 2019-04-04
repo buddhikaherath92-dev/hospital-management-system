@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Laboratory;
 use App\PatientReport;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,5 +39,9 @@ class PatientReportController extends Controller
         return response()->download($pathToFile);
     }
 
-
+    public function downloadDoctorReport($report_id){
+        $report=Laboratory::find($report_id);
+        $pathToFile = storage_path('app/public/upload/' . $report->report);
+        return response()->download($pathToFile);
+    }
 }

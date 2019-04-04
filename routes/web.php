@@ -34,6 +34,8 @@ Route::group(['prefix'=>'patient'], function() {
     Route::get('/single/{id}', 'SingleDiagnoseController@show')->name('show_single_diagnose');
     Route::post('/attach_report', 'PatientReportController@store')->name('attach_report');
     Route::get('/completed_request/download/{report_id}', 'PatientReportController@download')->name('download_patient_report');
+    Route::get('/completed_request/doctor_report_download/{report_id}', 'PatientReportController@downloadDoctorReport')
+        ->name('doctor_report_download');
     Route::post('/emergency', 'EmergencyDetailsController@store')->name('emergency');
     Route::get('/dashboard/all_donations', 'DonationController@showDonations')->name('get_all_donations');
     Route::get('/dashboard/all_requests', 'DonationController@showRequests')->name('get_all_requests');
@@ -72,6 +74,8 @@ Route::group(['prefix'=>'pharmacy'], function() {
 Route::group(['prefix'=>'nurse'], function() {
     Route::get('/dashboard', 'Nurse\NurseDashboardController@show')->name('show_nurse_dashboard');
     Route::post('/make_appoinment', 'Nurse\AppoinmentController@store')->name('make_appoinment');
+    Route::post('/make_appoinment_unregistered', 'Nurse\AppoinmentController@storeUnregisterd')
+        ->name('make_appoinment_unregistered');
     Route::get('/all_users', 'Nurse\NewNurseController@show')->name('show_all_nurse');
     Route::post('/add_users', 'Nurse\NewNurseController@store')->name('add_nurse');
     Route::post('/search_nurse', 'Nurse\SearchController@show')->name('search_nurse');

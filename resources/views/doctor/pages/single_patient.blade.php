@@ -98,6 +98,7 @@
                    <label>Report Description :</label>
                    <textarea name="report-description" class="form-control"></textarea>
                    <br>
+                   <input type="hidden" name="patient_id" value="{{ $patient['id'] }}">
                    <div class="float-right">
                        <button type="submit" class="btn btn-success">Request Report</button>
                    </div>

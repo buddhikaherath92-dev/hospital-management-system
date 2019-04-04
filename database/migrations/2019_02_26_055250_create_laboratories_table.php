@@ -20,6 +20,7 @@ class CreateLaboratoriesTable extends Migration
             $table->string('report')->nullable();
             $table->boolean('is_ready');
             $table->unsignedInteger('diagnose_id');
+            $table->integer('patient_id');
             $table->foreign('diagnose_id')->references('id')->on('diagnoses');
             $table->timestamps();
         });
