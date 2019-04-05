@@ -63,6 +63,9 @@ class LoginController extends Controller
             case 5:
                 $this->redirectTo='/nurse/dashboard';
                 break;
+            case 6:
+                $this->redirectTo='/admin/dashboard';
+                break;
         }
     }
 

@@ -81,4 +81,10 @@ Route::group(['prefix'=>'nurse'], function() {
     Route::post('/search_nurse', 'Nurse\SearchController@show')->name('search_nurse');
 });
 
+Route::group(['prefix'=>'admin'], function() {
+    Route::get('/dashboard', 'Admin\AdminController@show')->name('show_admin_dashboard');
+    Route::post('/add_new_user', 'Admin\AdminController@store')->name('add_new_user');
+    Route::post('/search_user', 'Admin\AdminController@index')->name('search_user');
+});
+
 Route::get('/home', 'HomeController@index')->name('home');

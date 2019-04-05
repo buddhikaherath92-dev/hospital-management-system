@@ -40,6 +40,13 @@ class UserTableSeeder extends Seeder
                 'user_type' => (int)5,
                 'password' => bcrypt('nursepass'),
                 'email_verified_at'=>Carbon::now()
+            ],
+            [
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'user_type' => (int)6,
+                'password' => bcrypt('adminpass'),
+                'email_verified_at'=>Carbon::now()
             ]
         ]);
     }
