@@ -85,6 +85,7 @@ Route::group(['prefix'=>'admin'], function() {
     Route::get('/dashboard', 'Admin\AdminController@show')->name('show_admin_dashboard');
     Route::post('/add_new_user', 'Admin\AdminController@store')->name('add_new_user');
     Route::post('/search_user', 'Admin\AdminController@index')->name('search_user');
+    Route::get('/remove_user/{id}', 'Admin\AdminController@delete');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

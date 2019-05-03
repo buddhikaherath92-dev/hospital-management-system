@@ -173,4 +173,6 @@
         @endforeach
         </tbody>
     </table>
+
+    <button class="btn btn-success">Print Bar Code</button>
 @endsection

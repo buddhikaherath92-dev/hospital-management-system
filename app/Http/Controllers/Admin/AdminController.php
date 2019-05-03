@@ -45,5 +45,17 @@ class AdminController extends Controller
         return redirect()->back()->with('message','User created successfully');
     }
 
+    /**
+     * Delete a user from storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        User::find($id)->delete();
+        return redirect()->back()->with('message','User removed successfully');
+    }
+
 
 }

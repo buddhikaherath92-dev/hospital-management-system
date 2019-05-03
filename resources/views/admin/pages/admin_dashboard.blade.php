@@ -55,12 +55,14 @@
                             <thead>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Remove</th>
                             </thead>
                             <tbody>
                             @foreach($doctors as $doctor)
                             <tr>
                                 <td>{{$doctor->name}}</td>
                                 <td>{{$doctor->email}}</td>
+                                <td><a class="btn btn-danger" href="/admin/remove_user/{{$doctor->id}}">Remove User</a></td>
                             </tr>
                                 @endforeach
                             </tbody>
@@ -73,12 +75,14 @@
                             <thead>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Remove</th>
                             </thead>
                             <tbody>
                             @foreach($nurses as $nurse)
                                 <tr>
                                     <td>{{$nurse->name}}</td>
                                     <td>{{$nurse->email}}</td>
+                                    <td><a class="btn btn-danger" href="/admin/remove_user/{{$nurse->id}}">Remove User</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -91,12 +95,14 @@
                             <thead>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Remove</th>
                             </thead>
                             <tbody>
                             @foreach($labs as $lab)
                                 <tr>
                                     <td>{{$lab->name}}</td>
                                     <td>{{$lab->email}}</td>
+                                    <td><a class="btn btn-danger" href="/admin/remove_user/{{$lab->id}}">Remove User</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -109,12 +115,14 @@
                             <thead>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Remove</th>
                             </thead>
                             <tbody>
                             @foreach($pharmacies as $pharmacy)
                                 <tr>
                                     <td>{{$pharmacy->name}}</td>
                                     <td>{{$pharmacy->email}}</td>
+                                    <td><a class="btn btn-danger" href="/admin/remove_user/{{$pharmacy->id}}">Remove User</a></td>
                                 </tr>
                             @endforeach
                             </tbody>

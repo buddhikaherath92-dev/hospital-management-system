@@ -46,7 +46,7 @@
                     <input class="form-control " name="name" type="text" placeholder="Patient Name">
                 </div>
                 <div class="form-group">
-                    <input class="form-control " name="title" type="text" placeholder="Name">
+                    <input class="form-control " name="title" type="text" placeholder="Appointment Name">
                 </div>
                 <div class="form-group">
                     <input type="time" name="time" class="form-control" id="validationDefault03" placeholder="Time" required>

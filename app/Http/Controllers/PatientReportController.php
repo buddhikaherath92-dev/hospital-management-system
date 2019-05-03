@@ -18,7 +18,7 @@ class PatientReportController extends Controller
     {
         $data = request()->validate([
             'title' => 'required|string',
-            'report' => 'required|mimes:pdf',
+            'report' => 'required|mimes:pdf,docx,doc',
         ]);
         $file=$data['report']->getClientOriginalName();
         $data['report']->storeAs('public/upload',$file);

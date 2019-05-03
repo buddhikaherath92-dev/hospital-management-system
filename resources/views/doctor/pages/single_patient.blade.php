@@ -10,7 +10,7 @@
                    <div class="col-xl-6">
                        <h6><b>Patient Name : </b>{{ $patient['full_name'] }}</h6>
                        <h6><b>Address : </b>{{ $patient['address'] }}</h6>
-                       <h6><b>Age : </b>{{ $patient['age'].' Years' }}</h6>
+                       <h6><b>Age : </b>{{ \Carbon\Carbon::parse($patient['dob'])->age .' Years'}}</h6>
                        <h6><b>Gender : </b>{{ $patient['gender'] }}</h6>
                    </div>
                    <div class="col-xl-6">
@@ -24,7 +24,7 @@
                <div class="row">
                    <div class="col-xl-12">
                        <h6><b>Allergies : </b>{{ $patient['allergies'] }}</h6>
-                       <h6><b>Medical Condition : </b>{{ $patient['allergies'] }}</h6>
+                       <h6><b>Medical Condition : </b>{{ $patient['medical_condition'] }}</h6>
                    </div>
                </div>
            </div>
