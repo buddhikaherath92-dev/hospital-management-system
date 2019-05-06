@@ -53,6 +53,7 @@ Route::group(['prefix'=>'doctor'], function() {
     Route::get('/all_users', 'Doctor\NewDoctorController@show')->name('show_all_users');
     Route::post('/add_users', 'Doctor\NewDoctorController@store')->name('add_doctors');
     Route::get('/all_appoinments', 'Nurse\AppoinmentController@show')->name('show_all_appoinments');
+    Route::post('/filter', 'Nurse\AppoinmentController@filter')->name('filter_appoinments');
 });
 Route::group(['prefix'=>'lab'], function() {
     Route::get('/request', 'Lab\RequestController@show')->name('show_requests');

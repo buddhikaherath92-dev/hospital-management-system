@@ -1,7 +1,23 @@
 @extends('doctor.layouts.dashboard')
 
 @section('child-content')
-
+    <form action="{{ route("filter_appoinments") }}" method="post">
+        {{ csrf_field() }}
+        {{--@if($errors->any())--}}
+            {{--<div class="alert alert-danger" role="alert">--}}
+                {{--{{$errors->first()}}--}}
+            {{--</div>--}}
+        {{--@endif--}}
+        <div class="form-row col-6">
+            <div class="col-5">
+                <input class="form-control position-static" type="date" name="date_picker" id="datepicker" value="{{ $date }}">
+            </div>
+            <div class="col-3">
+                <button class="btn btn-primary" type="submit">Filter</button>
+            </div>
+        </div>
+    </form>
+    <br><br>
 <div class="jumbotron">
     <table class="table table-bordered">
         <thead class="bg-success">

@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class AppoinmentController extends Controller
 {
@@ -21,11 +22,13 @@ class AppoinmentController extends Controller
      */
     public function show()
     {
-        $appoinments = Appoinment::where('doctor',Auth::user()->name)->where('date',Carbon::today())->get();
-        $unreg_appoinments = UnregisteredAppoinment::where('doctor',Auth::user()->name)
-            ->where('date',Carbon::today())->get();
-        return view('doctor.pages.all_appoinments',['appoinments' => $appoinments,
-            'unreg_appoinments'=>$unreg_appoinments]);
+//        $unreg_appoinments = UnregisteredAppoinment::where('doctor',Auth::user()->name)
+//            ->where('date',Carbon::today())->get();
+        return view('doctor.pages.all_appoinments',[
+            'appoinments' => Appoinment::getAppointmentByDate(Carbon::now()),
+            'date'=>Carbon::now()->toDateString()
+//            'unreg_appoinments'=>$unreg_appoinments
+        ]);
     }
 
     /**
@@ -80,6 +83,18 @@ class AppoinmentController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    /**
+     * Filter Appintment by Date
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function filter(){
+        $date=request('date_picker');
+        return view('doctor.pages.all_appoinments',[
+            'appoinments' => Appoinment::getAppointmentByDate($date),
+            'date'=>$date
+        ]);
     }
 
 }
