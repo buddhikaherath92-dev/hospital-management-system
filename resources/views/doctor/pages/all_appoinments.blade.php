@@ -9,7 +9,7 @@
             {{--</div>--}}
         {{--@endif--}}
         <div class="form-row col-6">
-            <div class="col-5">
+            <div class="col-7">
                 <input class="form-control position-static" type="date" name="date_picker" id="datepicker" value="{{ $date }}">
             </div>
             <div class="col-3">
