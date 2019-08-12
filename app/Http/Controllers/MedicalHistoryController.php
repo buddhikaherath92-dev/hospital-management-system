@@ -45,7 +45,9 @@ class MedicalHistoryController extends Controller
             'diagnoses'=>Diagnose::joinDiagnose()->where('patients.id',Patient::getPatient(Auth::id())['id'])->get(),
             'reports'=>PatientReport::where('patient_id',Auth::id())->get(),'events'=>Event::where('patient_id',Auth::id())->get(),
             'doctor_reports'=>Laboratory::where('patient_id',Patient::where('user_id',Auth::id())->value('id'))->get(),
-            'prescriptions'=> $prescriptions->get()
+            'prescriptions'=> $prescriptions->get(),
+            'active_tab' => request()->has('active_tab') ? request('active_tab') : 'diagnoses',
+            'filter_param' => request()->has('filter_param') ? request('filter_param') : '',
         ]);
     }
 }

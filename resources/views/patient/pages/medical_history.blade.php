@@ -4,10 +4,10 @@
     <div class="container">
     <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#diagnoses">Diagnoses</a>
+            <a class="nav-link {{$active_tab === 'diagnoses' ? 'active' : ''}}" data-toggle="tab" href="#diagnoses">Diagnoses</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#prescriptions">Prescriptions</a>
+            <a class="nav-link {{$active_tab === 'prescriptions' ? 'active' : ''}}" data-toggle="tab" href="#prescriptions">Prescriptions</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#self_uploaded_reports">Self Uploaded Reports</a>
@@ -23,7 +23,7 @@
         </li>
     </ul>
     <div class="tab-content">
-        <div id="diagnoses" class="container tab-pane active"><br>
+        <div id="diagnoses" class="container tab-pane {{$active_tab === 'diagnoses' ? 'active' : 'fade'}}"><br>
             <h4>Diagnose History</h4>
             <table class="table table-hover">
                 <thead class="thead-dark">
@@ -130,18 +130,22 @@
             </table>
         </div>
 
-        <div id="prescriptions" class="container tab-pane fade"><br>
+        <div id="prescriptions" class="container tab-pane {{$active_tab === 'prescriptions' ? 'active' : 'fade'}}"><br>
             <div class="row" style="margin-bottom: 10px">
                 <div class="col-4">
                     <h4>Prescriptions</h4>
                 </div>
                 <div class="col-8">
                     <div class="search-container text-right">
-                        <form action="/action_page.php">
+                        <form action="{{route('show_patient_medical_history')}}" method="GET">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search this blog">
+                                <input type="hidden" value="prescription_by_doc" name="filter_by">
+                                <input type="hidden" value="prescriptions" name="active_tab">
+                                <input type="text" class="form-control" name="filter_param"
+                                       placeholder="Search by Doctor Name"
+                                       value="{{$active_tab === 'prescriptions' ? $filter_param : '' }}">
                                 <div class="input-group-append">
-                                    <button class="btn btn-secondary" type="button">
+                                    <button class="btn btn-secondary" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
@@ -159,6 +163,13 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if(count($prescriptions) == 0)
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            Sorry there are no relevant records found!
+                        </td>
+                    </tr>
+                @endif
                 @foreach($prescriptions as $prescription)
                     <tr>
                         <td>{{$prescription->diagnose}}</td>
