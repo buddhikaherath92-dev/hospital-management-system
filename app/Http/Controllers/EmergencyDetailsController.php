@@ -35,19 +35,7 @@ class EmergencyDetailsController extends Controller
         ]);
         $data['patient_id']=Auth::id();
         EmergencyDetail::updateOrCreate(['patient_id'=>Auth::id()],$data);
-        return redirect()->route('show_patient_myprofile');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return redirect()->route('show_patient_myprofile', ['active_tab' => 'emergency_contact']);
     }
 
 }

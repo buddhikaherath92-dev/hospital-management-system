@@ -3,10 +3,12 @@
     <div class="container">
         <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#personal_data">Personal Data</a>
+                <a class="nav-link {{$active_tab === 'personal_data' ? 'active' : ''}}"
+                   data-toggle="tab" href="#personal_data">Personal Data</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#emergency_contact">Emergency Contact</a>
+                <a class="nav-link {{$active_tab === 'emergency_contact' ? 'active' : ''}}"
+                   data-toggle="tab" href="#emergency_contact">Emergency Contact</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="tab" href="#patient_bar_code">Patient Bar Code</a>
@@ -14,8 +16,7 @@
         </ul>
     </div>
     <div class="tab-content">
-
-        <div id="personal_data" class="container tab-pane active"><br>
+        <div id="personal_data" class="container tab-pane {{$active_tab === 'personal_data' ? 'active' : 'fade'}}"><br>
             <h4>Personal Data</h4>
             <form action="" method="post">
                 {{ csrf_field() }}
@@ -161,38 +162,24 @@
             <br>
         </div>
 
-        <div id="emergency_contact" class="container tab-pane fade"><br>
+        <div id="emergency_contact" class="container tab-pane {{$active_tab === 'emergency_contact' ? 'active' : 'fade'}}"><br>
             <h4>Emergency Details</h4>
             <form action="{{route('emergency')}}" method="post">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="formGroupExampleInput">Contact Name</label>
-                    <input type="text" name="contact_name" class="form-control" id="formGroupExampleInput" placeholder="Contact Name">
+                    <input type="text" name="contact_name" class="form-control"
+                           value="{{$details[0]->contact_name === null ? '' : $details[0]->contact_name}}"
+                           id="formGroupExampleInput" placeholder="Contact Name">
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput2">Contact Number</label>
-                    <input type="text" name="tel" class="form-control" id="formGroupExampleInput2" placeholder="Contact Number">
+                    <input type="text" name="tel" class="form-control" id="formGroupExampleInput2"
+                           value="{{$details[0]->tel === null ? '' : $details[0]->tel}}"
+                           placeholder="Contact Number">
                 </div>
                 <button class="btn btn-primary" type="submit">Save or Update</button>
             </form>
-            <br>
-            <hr>
-            <table class="table table-hover">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Contact Name</th>
-                    <th scope="col">Telephone Number</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($details as $detail)
-                    <tr>
-                        <td>{{$detail->contact_name}}</td>
-                        <td>{{$detail->tel}}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
         </div>
 
         <div id="patient_bar_code" class="container tab-pane fade"><br>

@@ -25,7 +25,7 @@ Route::group(['prefix'=>'patient'], function() {
     Route::get('/details', 'PatientDetailContoller@show')->name('show_patient_details');
     Route::post('/details', 'PatientDetailContoller@store')->name('save_patient_details');
     Route::get('/dashboard', 'MyProfileController@show')->name('show_patient_myprofile');
-    Route::post('/dashboard', 'MyProfileController@update')->name('update_myprofile');
+    Route::post('/dashboard', 'MyProfileController@updatePersonalData')->name('update_myprofile');
     Route::get('/dashboard/history', 'MedicalHistoryController@show')->name('show_patient_medical_history');
     Route::get('/dashboard/donation', 'DonationController@show')->name('show_donation');
     Route::post('/dashboard/donation', 'DonationController@store')->name('store_donation');
