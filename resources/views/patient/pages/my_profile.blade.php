@@ -169,13 +169,13 @@
                 <div class="form-group">
                     <label for="formGroupExampleInput">Contact Name</label>
                     <input type="text" name="contact_name" class="form-control"
-                           value="{{$details[0]->contact_name === null ? '' : $details[0]->contact_name}}"
+                           value="{{count($details) === 0 ? '' : $details[0]->contact_name}}"
                            id="formGroupExampleInput" placeholder="Contact Name">
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput2">Contact Number</label>
                     <input type="text" name="tel" class="form-control" id="formGroupExampleInput2"
-                           value="{{$details[0]->tel === null ? '' : $details[0]->tel}}"
+                           value="{{count($details) === 0 ? '' : $details[0]->tel}}"
                            placeholder="Contact Number">
                 </div>
                 <button class="btn btn-primary" type="submit">Save or Update</button>
