@@ -35,7 +35,7 @@ class Diagnose extends Model
         return Diagnose::join('laboratories','diagnoses.id','laboratories.diagnose_id')
             ->join('users','diagnoses.doctor_id','users.id')
             ->join('patients','diagnoses.patient_id','patients.id')
-            ->select('laboratories.id','title','description','users.name','full_name','posted_date');
+            ->select('laboratories.id','title','description','users.name','full_name','posted_date', 'laboratories.is_ready');
     }
     public static function getSingleReport($report_id){
         return Diagnose::join('laboratories','diagnoses.id','laboratories.diagnose_id')->join('users','diagnoses.doctor_id','users.id')->where('laboratories.id',$report_id)->first();
