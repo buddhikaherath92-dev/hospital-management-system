@@ -13,9 +13,9 @@ class AllPrescriptionController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(){
+//        dd(Diagnose::getNotReadyedPrescriptions()->get());
         return view('pharmacy.pages.all_prescriptions',[
-            'diagnoses'=>Diagnose::getNotReadyedPrescriptions()->where('is_ready',0)->get(),
-            'completed'=>Diagnose::getNotReadyedPrescriptions()->where('is_ready',1)->get()
+            'diagnoses'=>Diagnose::getNotReadyedPrescriptions()->get()
         ]);
     }
 }
