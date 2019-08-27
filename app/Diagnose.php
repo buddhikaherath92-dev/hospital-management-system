@@ -25,7 +25,7 @@ class Diagnose extends Model
      */
     public static function joinDiagnose(){
        return Diagnose::join('patients','diagnoses.patient_id','patients.id')
-            ->join('users','diagnoses.doctor_id','users.id')->select('users.name','diagnose','posted_date','diagnoses.id','patients.full_name', 'pharmacies.is_ready');
+            ->join('users','diagnoses.doctor_id','users.id')->select('users.name','diagnose','posted_date','diagnoses.id','patients.full_name');
     }
     /**
      * get All report requests
