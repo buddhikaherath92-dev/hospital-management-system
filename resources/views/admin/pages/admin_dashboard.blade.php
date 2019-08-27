@@ -96,6 +96,11 @@
                             <th>Remove</th>
                             </thead>
                             <tbody>
+                            @if(count($users) == 0)
+                                <tr>
+                                    <td colspan="4"><h5 class="text-center">Sorry no relevant records found!</h5></td>
+                                </tr>
+                            @endif
                             @foreach($users as $user)
                             <tr>
                                 <td>{{$user->name}}</td>
