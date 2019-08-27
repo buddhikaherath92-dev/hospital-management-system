@@ -46,89 +46,67 @@
         </form>
     </div>
 
+            @if(isset($filterParams) && count($filterParams) >0)
+            <script>
+                $("html, body").animate({ scrollTop: 1000 }, 2000);
+            </script>
+            @endif
+
+            <div class="bg-dark p-3 mb-3">
+                <form class="form-inline" action="{{route('show_admin_dashboard')}}" method="get">
+                    <input type="text" class="form-control mb-2 mr-sm-2"
+                           id="inlineFormInputName2" name="user_name" placeholder="Search by Username:"
+                           value="{{isset($filterParams['user_name'])? $filterParams['user_name'] : ''}}">
+                    <input type="email" class="form-control mb-2 mr-sm-2"
+                           id="inlineFormInputName2" name="email"
+                           placeholder="Search by Email:"
+                           value="{{isset($filterParams['email'])? $filterParams['email'] : ''}}">
+                    <div class="input-group mb-2 mr-sm-2">
+                        <select class="custom-select" name="user_type">
+                            <option value=""
+                                {{isset($filterParams['user_type']) && $filterParams['user_type'] === '' ?
+                                'selected' : ''}}>
+                                All User Types
+                            </option>
+                            @foreach(config('constances.user_types') as $userTypeIndex => $userType)
+                                <option value="{{$userType}}"
+                                    {{isset($filterParams['user_type']) && $filterParams['user_type'] ==
+                                    $userType ? 'selected' : ''}}>
+                                    {{$userTypeIndex}}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <input type="hidden" name="filter_enabled" value="true">
+
+                    <button type="submit" class="btn btn-primary mb-2">Search</button>  &nbsp; &nbsp;
+                    <a href="{{route('show_admin_dashboard')}}" class="btn btn-info mb-2">Reset Filters</a>
+                </form>
+            </div>
+
             <div class="row">
                 <div class="col-md-12">
-                    <h4>All Users</h4>
-                    <div class="table-responsive">
-                        <h6>Doctors</h6>
+                    <div class="table-responsive" id="results_table">
                         <table id="mytable" class="table table-bordred table-striped">
                             <thead>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>User Type</th>
                             <th>Remove</th>
                             </thead>
                             <tbody>
-                            @foreach($doctors as $doctor)
+                            @foreach($users as $user)
                             <tr>
-                                <td>{{$doctor->name}}</td>
-                                <td>{{$doctor->email}}</td>
-                                <td><a class="btn btn-danger" href="/admin/remove_user/{{$doctor->id}}">Remove User</a></td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>{{array_search($user->user_type, config('constances.user_types'))}}</td>
+                                <td><a class="btn btn-danger" href="/admin/remove_user/{{$user->id}}">Remove User</a></td>
                             </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-
-                    <div class="table-responsive">
-                        <h6>Nurses</h6>
-                        <table id="mytable" class="table table-bordred table-striped">
-                            <thead>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Remove</th>
-                            </thead>
-                            <tbody>
-                            @foreach($nurses as $nurse)
-                                <tr>
-                                    <td>{{$nurse->name}}</td>
-                                    <td>{{$nurse->email}}</td>
-                                    <td><a class="btn btn-danger" href="/admin/remove_user/{{$nurse->id}}">Remove User</a></td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="table-responsive">
-                        <h6>Lab users</h6>
-                        <table id="mytable" class="table table-bordred table-striped">
-                            <thead>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Remove</th>
-                            </thead>
-                            <tbody>
-                            @foreach($labs as $lab)
-                                <tr>
-                                    <td>{{$lab->name}}</td>
-                                    <td>{{$lab->email}}</td>
-                                    <td><a class="btn btn-danger" href="/admin/remove_user/{{$lab->id}}">Remove User</a></td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="table-responsive">
-                        <h6>Pharmacy</h6>
-                        <table id="mytable" class="table table-bordred table-striped">
-                            <thead>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Remove</th>
-                            </thead>
-                            <tbody>
-                            @foreach($pharmacies as $pharmacy)
-                                <tr>
-                                    <td>{{$pharmacy->name}}</td>
-                                    <td>{{$pharmacy->email}}</td>
-                                    <td><a class="btn btn-danger" href="/admin/remove_user/{{$pharmacy->id}}">Remove User</a></td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
                 </div>
             </div>
     </div>

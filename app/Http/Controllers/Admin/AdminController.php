@@ -17,11 +17,27 @@ class AdminController extends Controller
      */
     public function show()
     {
+        $users = new User();
+        $filterParams = [];
+
+        if(request()->has('filter_enabled') && request('filter_enabled') === 'true'){
+            if(request()->has('user_name') && request('user_name') !== null){
+                $users = $users->where('name', 'like', '%'.request('user_name').'%');
+                $filterParams['user_name'] = request('user_name');
+            }
+            if(request()->has('email') && request('email') !== null){
+                $users = $users->where('email', request('email'));
+                $filterParams['email'] = request('email');
+            }
+            if(request()->has('user_type') && request('user_type') !== null){
+                $users = $users->where('user_type', request('user_type'));
+                $filterParams['user_type'] = request('user_type');
+            }
+        }
+
         return view('admin.pages.admin_dashboard',[
-            'doctors'=>User::where('user_type',2)->get(),
-            'nurses'=>User::where('user_type',5)->get(),
-            'labs'=>User::where('user_type',4)->get(),
-            'pharmacies'=>User::where('user_type',3)->get()
+            'users'=>$users->get(),
+            'filterParams' => $filterParams
             ]);
     }
 
