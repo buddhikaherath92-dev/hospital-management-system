@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Colombo',
 
     /*
     |--------------------------------------------------------------------------
@@ -178,7 +178,12 @@ return [
         /*
          * Genereta PDF File
          */
-        Barryvdh\DomPDF\serviceProvider::class
+        Barryvdh\DomPDF\serviceProvider::class,
+
+        /*
+         * Charting library
+         * */
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
 
     ),
 
@@ -228,7 +233,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
 
     ],
 

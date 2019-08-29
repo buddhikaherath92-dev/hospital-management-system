@@ -22,3 +22,14 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\DiagnoseValue::class, function (Faker $faker) {
+    return [
+        'diagnose_id' => 2,
+        'hba1c' => $faker->randomFloat(2, 0, 200),
+        'cholesterol' => $faker->randomFloat(2,  0, 200),
+        'bp' => $faker->randomFloat( 2, 0,  200),
+        'created_at' => $faker->dateTimeBetween('-10 days', 'now', 'Asia/Colombo'),
+        'updated_at' => $faker->dateTimeBetween('-10 days', 'now', 'Asia/Colombo'),
+    ];
+});

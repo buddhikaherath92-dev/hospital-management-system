@@ -41,6 +41,7 @@ Route::group(['prefix'=>'patient'], function() {
     Route::get('/dashboard/all_requests', 'DonationController@showRequests')->name('get_all_requests');
     Route::get('/getPDF/{id}', 'PDFController@getPDF');
     Route::post('/add_event', 'Doctor\EventController@store')->name('add_event');
+    Route::get('/reports/hba1c', 'Hba1cReportController@show')->name('show_hba1c_report');
 });
 Route::group(['prefix'=>'doctor'], function() {
     Route::get('/patients', 'Doctor\AllPatientsController@show')->name('show_doctor_page');
