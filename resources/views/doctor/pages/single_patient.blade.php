@@ -82,13 +82,35 @@
                            <br>
                            <label>Prescription :</label>
                            <textarea name="prescription" class="form-control"></textarea>
-                           <br>
+
+                           @if($patient['patient_category'] == 1 || $patient['patient_category'] == 2)
+                               <div class="form-group">
+                                   <label for="f_1" class="mt-3 mr-4">
+                                       Cholesterol :
+                                       <input id="f_1" class="form-control" type="number" step="any" name="cholesterol">
+                                   </label>
+                                   @if($patient['patient_category'] == 1)
+                                   <label for="f_2" class="mt-3 mr-4">
+                                       Blood Pressure :
+                                       <input id="f_2" class="form-control" type="number" step="any" name="bp">
+                                   </label>
+                                   @endif
+                                   @if($patient['patient_category'] == 2)
+                                   <label for="f_3" class="mt-3 mr-4">
+                                       HbA1C:
+                                       <input id="f_3" class="form-control" type="number" step="any" name="hba1c">
+                                   </label>
+                                   @endif
+                               </div>
+                           @endif
                            <div class="form-row">
                                <div class="col-md-3">
-                                   <select class="form-control" name="pharmacy_type">
-                                       <option value="0">From Hospital Pharmacy</option>
-                                       <option value="1">From External Pharmacy</option>
+                                   <label for="ware_to_collect"> Get Medicine From :
+                                   <select id="ware_to_collect" class="form-control" name="pharmacy_type">
+                                       <option value="0">Hospital Pharmacy</option>
+                                       <option value="1">External Pharmacy</option>
                                    </select>
+                                   </label>
                                </div>
                            </div>
                            <div class="float-right">

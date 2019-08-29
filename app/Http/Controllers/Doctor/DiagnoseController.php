@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Diagnose;
+use App\DiagnoseValue;
 use App\Pharmacy;
 use App\Prescription;
 use Carbon\Carbon;
@@ -24,6 +25,7 @@ class DiagnoseController extends Controller
             'diagnose' => 'required',
             'prescription' => 'string',
         ]);
+        $diagnoseValues = [];
         DB::beginTransaction();
         try {
             $result=Diagnose::create([
@@ -41,6 +43,21 @@ class DiagnoseController extends Controller
                    'diagnose_id'=>$result['id'],
                    'is_ready'=>false,
                 ]);
+            }
+            if(request()->has('cholesterol') && request('cholesterol') !== null){
+                $diagnoseValues['cholesterol'] = request('cholesterol');
+            }
+            if(request()->has('bp') && request('bp') !== null){
+                $diagnoseValues['bp'] = request('bp');
+            }
+            if(request()->has('hba1c') && request('hba1c') !== null){
+                $diagnoseValues['hba1c'] = request('hba1c');
+            }
+            if(count($diagnoseValues) > 0){
+                $diagnoseValues['diagnose_id'] = $result['id'];
+                $diagnoseValues['created_at'] = Carbon::now();
+                $diagnoseValues['updated_at'] = Carbon::now();
+                DiagnoseValue::create($diagnoseValues);
             }
             DB::commit();
             return redirect()->back()->with('diagnose_id',$result['id'])->withSuccess('Diagnose Added Successfully !');
