@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Doctor;
 
+use App\DiagnoseValue;
 use App\Laboratory;
 use App\Prescription;
 use Illuminate\Http\Request;
@@ -27,6 +28,7 @@ class PrescriptionController extends Controller
         return view('doctor.pages.prescription',[
             'diagnose'=>Prescription::join('diagnoses','prescriptions.diagnose_id','diagnoses.id')
             ->join('users','diagnoses.doctor_id','users.id')->where('diagnoses.id',$diagnose_id)->first(),
+            'diagnoseValues' => DiagnoseValue::where('diagnose_id', $diagnose_id)->first(),
             'reports'=>Laboratory::where('diagnose_id',$diagnose_id)->get()
         ]);
     }

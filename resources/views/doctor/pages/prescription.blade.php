@@ -1,7 +1,7 @@
 @extends('doctor.layouts.dashboard')
 
 @section('child-content')
-   <div class="container">
+   <div class="container mt-3">
        <div class="card w-100">
            <div class="card-body">
                <h3 class="card-title">Diagnose</h3>
@@ -22,7 +22,7 @@
            </div>
        </div>
    </div>
-   <div class="container">
+   <div class="container mt-3">
        <div class="card w-100">
            <div class="card-body">
                <h3 class="card-title">Prescription</h3>
@@ -35,7 +35,46 @@
            </div>
        </div>
    </div>
-   <div class="container">
+   @if($diagnoseValues !== null)
+   <div class="container mt-3">
+       <div class="card w-100">
+           <div class="card-body">
+               <h3 class="card-title">Diagnose Values</h3>
+               <hr>
+               <table class="table table-hover">
+                   <thead class="thead-dark">
+                   <tr>
+                       @if($diagnoseValues->bp !== null)
+                           <th>Blood Pressure</th>
+                       @endif
+                       @if($diagnoseValues->cholesterol !== null)
+                           <th>Cholesterol</th>
+                       @endif
+                       @if($diagnoseValues->hba1c !== null)
+                           <th>HbA1C Value</th>
+                       @endif
+                   </tr>
+                   </thead>
+                   <tbody>
+                   <tr>
+                       @if($diagnoseValues->bp !== null)
+                           <td>{{$diagnoseValues->bp}}</td>
+                       @endif
+                       @if($diagnoseValues->cholesterol !== null)
+                           <td>{{$diagnoseValues->bp}}</td>
+                       @endif
+                       @if($diagnoseValues->hba1c !== null)
+                           <td>{{$diagnoseValues->bp}}</td>
+                       @endif
+                   </tr>
+                   </tbody>
+
+               </table>
+           </div>
+       </div>
+   </div>
+   @endif
+   <div class="container mt-3">
        <div class="card w-100">
            <div class="card-body">
                <h3 class="card-title">Attached Reports</h3>
@@ -51,6 +90,15 @@
                    </tr>
                    </thead>
                    <tbody>
+                   @if(count($reports) == 0)
+                       <tr>
+                           <td colspan="5">
+                               <h5 class="text-center">
+                                   Sorry no attached reports found!
+                               </h5>
+                           </td>
+                       </tr>
+                   @endif
                    @foreach($reports as $report)
                        <tr >
                            <th scope="row">{{ $report['id'] }}</th>
