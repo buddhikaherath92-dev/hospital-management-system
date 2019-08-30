@@ -206,7 +206,7 @@
                         <p class="text-black-50">How your blood pressure changed with time (Blood Pressure vs Time)</p>
                     </div>
                     <div class="card-footer text-center">
-                        <a href="#" class="text-white">View Report</a>
+                        <a href="{{route('show_bp_report')}}" class="text-white">View Report</a>
                     </div>
                 </div>
                 <div class="card bg-info">
