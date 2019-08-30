@@ -159,13 +159,15 @@
                 <tr>
                     <th scope="col">Diagnose</th>
                     <th scope="col">Prescription</th>
+                    <th scope="col">Doctor</th>
+                    <th scope="col">Date</th>
                     <th scope="col">Download</th>
                 </tr>
                 </thead>
                 <tbody>
                 @if(count($prescriptions) == 0)
                     <tr>
-                        <td colspan="3" class="text-center">
+                        <td colspan="5" class="text-center">
                             Sorry there are no relevant records found!
                         </td>
                     </tr>
@@ -174,6 +176,8 @@
                     <tr>
                         <td>{{$prescription->diagnose}}</td>
                         <td>{{$prescription->prescription}}</td>
+                        <td>{{'Dr. '.$prescription->doctor}}</td>
+                        <td>{{Carbon\Carbon::parse($prescription->prescribed_date)->toFormattedDateString()}}</td>
                         <td><a class="btn btn-danger" href="/patient/getPDF/{{$prescription->diagnose_id}}">Download Prescriptions</a></td>
                     </tr>
                 @endforeach

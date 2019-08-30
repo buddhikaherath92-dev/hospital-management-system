@@ -29,9 +29,11 @@ class MedicalHistoryController extends Controller
     public function show(){
 
         $prescriptions = DB::table('prescriptions')
-            ->select('prescriptions.prescription','diagnoses.diagnose','prescriptions.diagnose_id')
             ->join('diagnoses','prescriptions.diagnose_id','=','diagnoses.id')
-            ->where('patient_id',Patient::where('user_id',Auth::id())->value('id'));
+            ->join('users', 'diagnoses.doctor_id', '=', 'users.id')
+            ->where('patient_id',Patient::where('user_id',Auth::id())->value('id'))
+            ->select('prescriptions.prescription','diagnoses.diagnose','prescriptions.diagnose_id',
+                'users.name as doctor', 'prescriptions.created_at as prescribed_date');
 
         $patientType = Patient::where('user_id',Auth::id())->value('patient_category');
 
@@ -39,7 +41,6 @@ class MedicalHistoryController extends Controller
         if(request()->has('filter_by') && request()->has('filter_param') &&
             request('filter_by') === 'prescription_by_doc'){
             $prescriptions = $prescriptions
-                ->join('users', 'diagnoses.doctor_id', '=', 'users.id')
                 ->where('users.name', 'LIKE', '%'.request('filter_param').'%' );
         }
 
