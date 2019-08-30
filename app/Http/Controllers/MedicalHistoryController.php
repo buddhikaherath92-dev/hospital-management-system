@@ -33,6 +33,8 @@ class MedicalHistoryController extends Controller
             ->join('diagnoses','prescriptions.diagnose_id','=','diagnoses.id')
             ->where('patient_id',Patient::where('user_id',Auth::id())->value('id'));
 
+        $patientType = Patient::where('user_id',Auth::id())->value('patient_category');
+
         // filter prescriptions by doctor name
         if(request()->has('filter_by') && request()->has('filter_param') &&
             request('filter_by') === 'prescription_by_doc'){
@@ -48,6 +50,7 @@ class MedicalHistoryController extends Controller
             'prescriptions'=> $prescriptions->get(),
             'active_tab' => request()->has('active_tab') ? request('active_tab') : 'diagnoses',
             'filter_param' => request()->has('filter_param') ? request('filter_param') : '',
+            'patient_type' => $patientType
         ]);
     }
 }
