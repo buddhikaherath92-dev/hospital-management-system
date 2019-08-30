@@ -43,6 +43,7 @@ Route::group(['prefix'=>'patient'], function() {
     Route::post('/add_event', 'Doctor\EventController@store')->name('add_event');
     Route::get('/reports/hba1c', 'Hba1cReportController@show')->name('show_hba1c_report');
     Route::get('/reports/bp', 'BloodPressureReportController@show')->name('show_bp_report');
+    Route::get('/reports/cholesterol', 'CholesterolReportController@show')->name('show_cholesterol_report');
 });
 Route::group(['prefix'=>'doctor'], function() {
     Route::get('/patients', 'Doctor\AllPatientsController@show')->name('show_doctor_page');

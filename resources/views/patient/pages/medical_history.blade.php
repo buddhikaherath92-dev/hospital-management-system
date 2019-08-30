@@ -218,7 +218,7 @@
                         <p class="text-black-50">How your cholesterol value changed with time (Cholesterol vs Time)</p>
                     </div>
                     <div class="card-footer text-center">
-                        <a href="#" class="text-white">View Report</a>
+                        <a href="{{route('show_cholesterol_report')}}" class="text-white">View Report</a>
                     </div>
                 </div>
             </div>
