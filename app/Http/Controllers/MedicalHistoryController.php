@@ -33,7 +33,7 @@ class MedicalHistoryController extends Controller
             ->join('users', 'diagnoses.doctor_id', '=', 'users.id')
             ->where('patient_id',Patient::where('user_id',Auth::id())->value('id'))
             ->select('prescriptions.prescription','diagnoses.diagnose','prescriptions.diagnose_id',
-                'users.name as doctor', 'prescriptions.created_at as prescribed_date');
+                'users.name as doctor', 'diagnoses.posted_date as prescribed_date');
 
         $patientType = Patient::where('user_id',Auth::id())->value('patient_category');
 
