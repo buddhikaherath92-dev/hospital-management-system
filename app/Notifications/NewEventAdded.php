@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class PrescriptionReady extends Notification
+class NewEventAdded extends Notification
 {
     use Queueable;
 
@@ -41,9 +41,9 @@ class PrescriptionReady extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Your prescribed medicines are ready to collect!! Please visit our pharmacy! ')
-                    ->action('Download or View Prescription',
-                        url(env('APP_URL').'patient/dashboard/history?active_tab=prescriptions'))
+                    ->line('You have new event!')
+                    ->action('View Details', url(env('APP_URL').
+                        'patient/dashboard/history/?active_tab=events'))
                     ->line('Thank you for using online hospital system!');
     }
 

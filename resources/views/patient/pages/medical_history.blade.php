@@ -10,16 +10,16 @@
             <a class="nav-link {{$active_tab === 'prescriptions' ? 'active' : ''}}" data-toggle="tab" href="#prescriptions">Prescriptions</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#self_uploaded_reports">Self Uploaded Reports</a>
+            <a class="nav-link {{$active_tab === 'self_uploaded_reports' ? 'active' : ''}}" data-toggle="tab" href="#self_uploaded_reports">Self Uploaded Reports</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#lab_reports">Lab Reports</a>
+            <a class="nav-link {{$active_tab === 'lab_reports' ? 'active' : ''}}" data-toggle="tab" href="#lab_reports">Lab Reports</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#events">Events</a>
+            <a class="nav-link {{$active_tab === 'events' ? 'active' : ''}}" data-toggle="tab" href="#events">Events</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#statistic_reports">Statistic Reports</a>
+            <a class="nav-link {{$active_tab === 'statistic_reports' ? 'active' : ''}}" data-toggle="tab" href="#statistic_reports">Statistic Reports</a>
         </li>
     </ul>
     <div class="tab-content">
@@ -47,7 +47,7 @@
             </table>
         </div>
 
-        <div id="self_uploaded_reports" class="container tab-pane fade"><br>
+        <div id="self_uploaded_reports" class="container tab-pane {{$active_tab === 'self_uploaded_reports' ? 'active' : 'fade'}}"><br>
             <h4>Self Uploaded Reports</h4>
             <table class="table table-hover">
                 <thead class="thead-dark">
@@ -72,7 +72,7 @@
             </table>
         </div>
 
-        <div id="lab_reports" class="container tab-pane fade"><br>
+        <div id="lab_reports" class="container tab-pane {{$active_tab === 'lab_reports' ? 'active' : 'fade'}}"><br>
             <h4>Lab Reports</h4>
             <table class="table table-hover">
                 <thead class="thead-dark">
@@ -100,7 +100,7 @@
             </table>
         </div>
 
-        <div id="events" class="container tab-pane fade"><br>
+        <div id="events" class="container tab-pane {{$active_tab === 'events' ? 'active' : 'fade'}}"><br>
             <h4>Events</h4>
             <table class="table table-hover">
                 <thead class="thead-dark">
@@ -181,7 +181,7 @@
             </table>
         </div>
 
-        <div id="statistic_reports" class="container tab-pane fade"><br>
+        <div id="statistic_reports" class="container tab-pane {{$active_tab === 'statistic_reports' ? 'active' : 'fade'}}"><br>
             <h4>Reports</h4>
             <hr>
             <div class="card-columns">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Event;
+use App\Notifications\NewEventAdded;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +42,8 @@ class EventController extends Controller
         ]);
         $data['doctor_name'] = Auth::user()->name;
         Event::create($data);
+        $user = User::find((int)request('patient_id'));
+        $user->notify(new NewEventAdded());
         return redirect()->back();
     }
 
