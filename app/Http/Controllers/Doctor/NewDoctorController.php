@@ -32,7 +32,8 @@ class NewDoctorController extends Controller
         $data = request()->validate([
             'name' => 'required|string',
             'email' => 'required|email',
-            'password' => 'required|string|min:6'
+            'password' => 'required|string|min:6',
+            'speciality' => 'required|string'
         ]);
         $data['password'] = Hash::make($data['password']);
         $data['user_type'] = '2';

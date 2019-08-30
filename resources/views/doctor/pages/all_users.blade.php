@@ -18,6 +18,10 @@
             <input type="text" class="form-control" name="name" id="exampleInputEmail1" placeholder="Enter name">
         </div>
         <div class="form-group">
+            <label for="speciality">Speciality</label>
+            <input id="speciality" name="speciality" class="form-control" placeholder="Ex: Eye">
+        </div>
+        <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -34,12 +38,14 @@
         <table class="table table-bordered">
             <thead class="bg-success">
                 <th>Name</th>
+                <th>Speciality</th>
                 <th>Email</th>
             </thead>
             <tbody>
             @foreach($users as $user)
                 <tr>
                     <td>{{$user->name}}</td>
+                    <td>{{$user->speciality !== null ? $user->speciality : 'N / A' }}</td>
                     <td>{{$user->email}}</td>
                 </tr>
                 @endforeach
