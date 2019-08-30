@@ -8,6 +8,7 @@ use App\User;
 use ConsoleTVs\Charts\Facades\Charts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Hba1cReportController extends Controller
 {
@@ -19,7 +20,8 @@ class Hba1cReportController extends Controller
        $patientId = Patient::where('user_id',Auth::id())->value('id');
        $records = DiagnoseValue::join('diagnoses', 'diagnose_values.diagnose_id', 'diagnoses.id')
            ->where('diagnoses.patient_id', $patientId)
-           ->select('diagnose_values.hba1c', 'diagnose_values.created_at')
+           ->select(DB::raw('round(avg(diagnose_values.hba1c),2) as hba1c, DATE(diagnose_values.created_at) created_at'))
+           ->groupBy('created_at')
            ->get();
 
        $labels = [];
@@ -31,7 +33,7 @@ class Hba1cReportController extends Controller
        }
 
         $chart = Charts::create('line', 'highcharts')
-            ->title('HbA1C vs TIme')
+            ->title('Average HbA1C per day vs Days')
             ->elementLabel('HbA1C')
             ->labels($labels)
             ->values($values)

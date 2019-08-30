@@ -29,7 +29,7 @@ $factory->define(App\DiagnoseValue::class, function (Faker $faker) {
         'hba1c' => $faker->randomFloat(2, 0, 200),
         'cholesterol' => $faker->randomFloat(2,  0, 200),
         'bp' => $faker->randomFloat( 2, 0,  200),
-        'created_at' => $faker->dateTimeBetween('-10 days', 'now', 'Asia/Colombo'),
-        'updated_at' => $faker->dateTimeBetween('-10 days', 'now', 'Asia/Colombo'),
+        'created_at' => $faker->dateTimeBetween('-10 months', 'now', 'Asia/Colombo'),
+        'updated_at' => $faker->dateTimeBetween('-10 months', 'now', 'Asia/Colombo'),
     ];
 });
