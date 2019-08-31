@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Nurse;
 
+use App\Appoinment;
 use App\Patient;
 use App\User;
 use Illuminate\Http\Request;
@@ -35,5 +36,26 @@ class MakeAppointmentController extends Controller
             'doctors' => $doctors->get(),
             'filterParams' => $filterParams
         ]);
+    }
+
+    /**
+     * Make new appointment
+     */
+    public function store()
+    {
+        $data = request()->validate([
+            'title' => 'required|string',
+            'time' => 'required',
+            'date' => 'required|date',
+            'doctor' => 'required',
+            'patient_id' => 'required'
+        ]);
+
+        $data['isAppointed'] = '1';
+        $data['doctor'] = (int) $data['doctor'];
+        $response = Appoinment::updateOrCreate(['date'=>$data['date'],
+            'patient_id'=>Patient::where('id',$data['patient_id'])->value('id')],$data);
+        return $response->wasRecentlyCreated == true ? redirect('/nurse/dashboard')->with('message','Appointed Successfully') :
+            redirect()->back()->with('message','Appointment Made Before');
     }
 }

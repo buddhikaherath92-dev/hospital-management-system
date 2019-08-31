@@ -78,7 +78,7 @@ Route::group(['prefix'=>'pharmacy'], function() {
 Route::group(['prefix'=>'nurse'], function() {
     Route::get('/dashboard', 'Nurse\NurseDashboardController@show')->name('show_nurse_dashboard');
     Route::get('/make_appointment', 'Nurse\MakeAppointmentController@show')->name('show_make_appointment');
-    Route::post('/make_appoinment', 'Nurse\AppoinmentController@store')->name('make_appoinment');
+    Route::post('/make_appoinment', 'Nurse\MakeAppointmentController@store')->name('make_appoinment');
     Route::post('/make_appoinment_unregistered', 'Nurse\AppoinmentController@storeUnregisterd')
         ->name('make_appoinment_unregistered');
     Route::get('/all_users', 'Nurse\NewNurseController@show')->name('show_all_nurse');

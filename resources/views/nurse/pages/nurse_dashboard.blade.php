@@ -2,7 +2,7 @@
 
 @section('child-content')
     @if(Session::has('message'))
-        <p class="alert alert-info">{{ Session::get('message') }}</p>
+        <p class="alert alert-success">{{ Session::get('message') }}</p>
     @endif
     <div class="bg-dark p-3 mb-3">
         <form class="form-inline" action="{{route('show_nurse_dashboard')}}" method="get">

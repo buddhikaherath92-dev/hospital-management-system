@@ -1,6 +1,9 @@
 @extends('nurse.layouts.dashboard')
 
 @section('child-content')
+    @if(Session::has('message'))
+        <p class="alert alert-success">{{ Session::get('message') }}</p>
+    @endif
     <div class="card">
         <div class="card-header">
             <h5 class="card-title text-center">{{'Making an appointment for '. $patient['full_name'] }}</h5>
@@ -51,6 +54,7 @@
                         </thead>
                         <tbody>
                         <form method="post" action="{{route('make_appoinment')}}">
+                            @csrf
                             @if(count($doctors) == 0)
                                 <tr>
                                     <td colspan="3">
@@ -65,7 +69,7 @@
                                     <td>
                                         <label for="select_doctor">
                                             <input type="radio" id="select_doctor"
-                                                   name="selected_doctor" value="{{$doctor->id}}">
+                                                   name="doctor" value="{{$doctor->id}}">
                                             Select Doctor
                                         </label>
                                     </td>
@@ -84,14 +88,26 @@
                     <div class="form-group">
                         <label for="appointment_time">Appointment Time :</label>
                             <input type="time" name="time" class="form-control w-100"
+                                   value="{{ Carbon\Carbon::now()->format('H:i')}}"
                                    id="appointment_time" placeholder="Time" required>
                     </div>
                     <div class="form-group">
                         <label for="appointment_date">Appointment Date :</label>
-                            <input class="form-control " name="date" type="date" id="appointment_date"
-                            value="{{date('m-d-Y')}}">
+                            <input class="form-control " name="date" type="date"
+                                   value="{{ Carbon\Carbon::today()->format('Y-m-d')}}"
+                                   min="{{ Carbon\Carbon::today()->format('Y-m-d')}}"
+                                   id="appointment_date">
                     </div>
                     <input type="hidden" id="id" name="patient_id" value="{{$patient['id']}}">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
