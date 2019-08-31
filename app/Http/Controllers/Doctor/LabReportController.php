@@ -16,6 +16,10 @@ class LabReportController extends Controller
      */
     public function store(Request $request){
 
+        if(request('diagnose_id') === null){
+            return redirect()->back()->withErrors('You have to add Diagnose record first !');
+        }
+
         $validatedData = $request->validate([
             'report-title' => 'required',
             'report-description' => 'string|required',

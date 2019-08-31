@@ -59,7 +59,7 @@
                     <br>
                     <input type="text" name="report_id" value="{{ $report['id'] }}" hidden>
                     <div class="float-right">
-                        <button class="btn btn-success">Ready</button>
+                        <button class="btn btn-success" {{$report['is_ready'] === 1 ? 'hidden' : ''}}>Ready</button>
                     </div>
                 </form>
             </div>

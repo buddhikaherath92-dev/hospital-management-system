@@ -41,9 +41,9 @@
                                && $filterParams['report_status'] === '1' ? 'selected' : ''}}>
                         Ready
                     </option>
-                    <option value="2"
+                    <option value="0"
                         {{count($filterParams) > 0 && isset($filterParams['report_status'])
-                               && $filterParams['report_status'] === '2' ? 'selected' : ''}}>
+                               && $filterParams['report_status'] === '0' ? 'selected' : ''}}>
                         Pending
                     </option>
                 </select>

@@ -129,7 +129,6 @@
                                    </button>
                                </div>
                            @endif
-
                            <input type="text" name="diagnose_id" value="{{ session('diagnose_id') === null ? old('diagnose_id') : session('diagnose_id') }}" hidden>
 
                            <label>Report Title :</label>
