@@ -1,124 +1,81 @@
 @extends('nurse.layouts.dashboard')
 
 @section('child-content')
-    <div class="container">
-        @if(Session::has('message'))
-            <p class="alert alert-info">{{ Session::get('message') }}</p>
+    <div class="bg-dark p-3 mb-3">
+        <form class="form-inline" action="{{route('show_nurse_dashboard')}}" method="get">
+            <input type="text" class="form-control mb-2 mr-sm-2"
+                   id="inlineFormInputName2" name="patient_name"
+                   value="{{count($filter_params) > 0 && isset($filter_params['patient_name'])?
+                   $filter_params['patient_name'] : '' }}"
+                   placeholder="Search by Patient Name:">
+
+            <div class="input-group mb-2 mr-sm-2">
+                <select class="custom-select" id="inlineFormCustomSelect" name="patient_gender">
+                    <option value=""
+                        {{count($filter_params) > 0 && isset($filter_params['patient_gender']) &&
+                        $filter_params['patient_gender'] === '' ? 'selected' : '' }}>Any Gender</option>
+                    <option value="Male"
+                        {{count($filter_params) > 0 && isset($filter_params['patient_gender']) &&
+                    $filter_params['patient_gender'] === 'Male' ? 'selected' : '' }}>Male</option>
+                    <option value="Female"
+                        {{count($filter_params) > 0 && isset($filter_params['patient_gender']) &&
+                    $filter_params['patient_gender'] === 'Female' ? 'selected' : '' }}>Female</option>
+
+                </select>
+            </div>
+
+            <div class="input-group mb-2 mr-sm-3">
+                <select class="custom-select" id="inlineFormCustomSelect" name="patient_category">
+                    <option value=""  {{count($filter_params) > 0 && isset($filter_params['patient_category']) &&
+                    $filter_params['patient_category'] === '' ? 'selected' : '' }}>Any Patient Category</option>
+                    <option value="3" {{count($filter_params) > 0 && isset($filter_params['patient_category']) &&
+                    $filter_params['patient_category'] === '3' ? 'selected' : '' }}>General</option>
+                    <option value="1" {{count($filter_params) > 0 && isset($filter_params['patient_category']) &&
+                    $filter_params['patient_category'] === '1' ? 'selected' : '' }}>Heart Patient</option>
+                    <option value="2" {{count($filter_params) > 0 && isset($filter_params['patient_category']) &&
+                    $filter_params['patient_category'] === '2' ? 'selected' : '' }}>Diabetics Patient</option>
+                </select>
+            </div>
+
+            <input type="hidden" name="filter_enabled" value="true">
+
+            <button type="submit" class="btn btn-primary mb-2">Search</button>  &nbsp; &nbsp;
+            <a href="{{route('show_nurse_dashboard')}}" class="btn btn-info mb-2">Reset Filters</a>
+        </form>
+    </div>
+
+    <h4 class="">{{$heading}}</h4>
+    <hr><br>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Patient ID</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Contact No</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Patient Category</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        @if(count($all_patients) === 0)
+            <tr>
+                <td colspan="6"><h6 class="text-center">Sorry no relavant records found!</h6></td>
+            </tr>
         @endif
-        <div class="row">
-            <div class="col-md-12">
-                <h4>All Patients</h4>
-                <div class="table-responsive">
-                    <table id="mytable" class="table table-bordred table-striped">
-                        <thead>
-                        <th>Full Name</th>
-                        <th>Address</th>
-                        <th>Type</th>
-                        <th>Birth-Day</th>
-                        <th>Gender</th>
-                        <th>Add Appoinment</th>
-                        </thead>
-                        <tbody>
-                        @foreach($patients as$patient)
-                        <tr>
-                            <td>{{$patient->full_name}}</td>
-                            <td>{{$patient->address}}</td>
-                            <td>{{config('constances.patient_categories_inverse')[$patient->patient_category]}}</td>
-                            <td>{{$patient->dob}}</td>
-                            <td>{{$patient->gender}}</td>
-                            <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" onclick="functionHere(this)" value="{{$patient->id}}" data-toggle="modal" data-target="#edit" id="btnAppoinment" >Make Appoinment</button></p></td>
-                        </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    {{--<div class="jumbotron">--}}
-        {{--<h6>Make Appoinments for unregistered patients</h6>--}}
-        {{--<form action="{{route('make_appoinment_unregistered')}}" method="post">--}}
-            {{--{{csrf_field()}}--}}
-            {{--<div class="modal-body">--}}
-                {{--<div class="form-group">--}}
-                    {{--<input class="form-control " name="name" type="text" placeholder="Patient Name">--}}
-                {{--</div>--}}
-                {{--<div class="form-group">--}}
-                    {{--<input class="form-control " name="title" type="text" placeholder="Appointment Name">--}}
-                {{--</div>--}}
-                {{--<div class="form-group">--}}
-                    {{--<input type="time" name="time" class="form-control" id="validationDefault03" placeholder="Time" required>--}}
-                    {{--<br>--}}
-                    {{--<input class="form-control " name="date" type="date" placeholder="Date">--}}
-                {{--</div>--}}
-                {{--<div class="form-group">--}}
-                    {{--<select class="custom-select custom-select-sm" name="doctor">--}}
-                        {{--<option selected>Select a doctor</option>--}}
-                        {{--@foreach($doctors as $doctor)--}}
-                            {{--<option>{{$doctor->name}}</option>--}}
-                        {{--@endforeach--}}
-                    {{--</select>--}}
-                {{--</div>--}}
-
-
-            {{--</div>--}}
-            {{--<div class="modal-footer ">--}}
-
-                {{--<button type="submit" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Make Appoinment</button>--}}
-            {{--</div>--}}
-        {{--</form>--}}
-    {{--</div>--}}
-
-
-    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Make an Appoinment</h4>
-                </div>
-                <form action="{{route('make_appoinment')}}" method="post">
-                    {{csrf_field()}}
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input class="form-control " name="title" type="text" placeholder="Name">
-                    </div>
-                    <div class="form-group">
-                            <input type="time" name="time" class="form-control" id="validationDefault03" placeholder="Time" required>
-                        <br>
-                        <input class="form-control " name="date" type="date" placeholder="Date">
-                    </div>
-                    <div class="form-group">
-                        <select class="custom-select custom-select-sm" name="doctor">
-                            <option selected>Select a doctor</option>
-                            @foreach($doctors as $doctor)
-                            <option>{{$doctor->name}}</option>
-                                @endforeach
-                        </select>
-                    </div>
-                    <input type="hidden" id="id" name="patient_id" value="">
-
-                </div>
-                <div class="modal-footer ">
-
-                    <button type="submit" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Make Appoinment</button>
-                </div>
-                </form>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>
-        function functionHere (btn) {
-            var buttonValue = btn.value;
-            var s= document.getElementById('id');
-            s.value=buttonValue
-        }
-    </script>
+        @foreach($all_patients as $patient)
+            <tr >
+                <th scope="row">{{ $patient['id'] }}</th>
+                <td>{{ $patient['full_name'] }}</td>
+                <td>{{ $patient['address'] }}</td>
+                <td>{{ $patient['tel_no'] }}</td>
+                <td>{{ $patient['gender'] }}</td>
+                <td>{{ array_search($patient['patient_category'],config('constances.patient_categories')) }}</td>
+                <td><a href="{{ url('/doctor/single/'.$patient['id']) }}" class="btn btn-primary">Make Appointment</a></td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 @endsection
 

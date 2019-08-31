@@ -12,13 +12,6 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/nurse/all_users">Users</a>
             </li>
-            <li class="nav-item active">
-                <form class="form-inline" action="{{route('search_nurse')}}" method="post">
-                    {{csrf_field()}}
-                    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
             @if(Auth::user() !== null)

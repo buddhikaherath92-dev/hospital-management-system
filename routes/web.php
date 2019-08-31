@@ -82,7 +82,6 @@ Route::group(['prefix'=>'nurse'], function() {
         ->name('make_appoinment_unregistered');
     Route::get('/all_users', 'Nurse\NewNurseController@show')->name('show_all_nurse');
     Route::post('/add_users', 'Nurse\NewNurseController@store')->name('add_nurse');
-    Route::post('/search_nurse', 'Nurse\SearchController@show')->name('search_nurse');
 });
 
 Route::group(['prefix'=>'admin'], function() {
