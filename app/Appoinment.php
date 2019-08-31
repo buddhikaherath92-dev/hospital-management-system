@@ -22,6 +22,6 @@ class Appoinment extends Model
      * @return mixed
      */
     public static function getAppointmentByDate($date){
-        return Appoinment::where('doctor',Auth::user()->name)->where('date',$date)->get();
+        return Appoinment::where('doctor',Auth::id())->where('date',$date)->get();
     }
 }
