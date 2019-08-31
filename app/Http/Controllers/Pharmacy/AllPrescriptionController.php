@@ -14,7 +14,8 @@ class AllPrescriptionController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(){
-        $diagnoses = Diagnose::getNotReadyedPrescriptions();
+        $diagnoses = Diagnose::getNotReadyedPrescriptions()
+            ->select('users.name','diagnose','posted_date','diagnoses.id','patients.full_name', 'pharmacies.is_ready');
         $doctors = User::where('user_type', (int)2)->get();
         $filterParams = [];
 

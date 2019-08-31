@@ -36,9 +36,9 @@
                                && $filterParams['report_status'] === '1' ? 'selected' : ''}}>
                         Ready
                     </option>
-                    <option value="2"
+                    <option value="0"
                         {{count($filterParams) > 0 && isset($filterParams['report_status'])
-                               && $filterParams['report_status'] === '2' ? 'selected' : ''}}>
+                               && $filterParams['report_status'] === '0' ? 'selected' : ''}}>
                         Pending
                     </option>
                 </select>
@@ -75,7 +75,7 @@
                 <td>{{ $diagnose['name'] }}</td>
                 <td>{{ $diagnose['full_name'] }}</td>
                 <td>{{ $diagnose['posted_date'] }}</td>
-                <td>{{ $diagnose['is_ready'] === 1? 'Ready' : 'Pending' }}</td>
+                <td>{{ $diagnose['is_ready'] === 1 ? 'Ready' : 'Pending'  }}</td>
                 <td>
                     <a href="{{ url('/pharmacy/single/'.$diagnose['id']) }}" >
                         <button class="btn btn-outline-primary">More</button>
