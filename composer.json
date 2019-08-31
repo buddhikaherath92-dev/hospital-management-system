@@ -13,7 +13,8 @@
         "consoletvs/charts": "5.*",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "doctrine/dbal": "v2.4.2"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
