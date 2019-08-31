@@ -1,6 +1,9 @@
 @extends('nurse.layouts.dashboard')
 
 @section('child-content')
+    @if(Session::has('message'))
+        <p class="alert alert-info">{{ Session::get('message') }}</p>
+    @endif
     <div class="bg-dark p-3 mb-3">
         <form class="form-inline" action="{{route('show_nurse_dashboard')}}" method="get">
             <input type="text" class="form-control mb-2 mr-sm-2"
@@ -72,7 +75,12 @@
                 <td>{{ $patient['tel_no'] }}</td>
                 <td>{{ $patient['gender'] }}</td>
                 <td>{{ array_search($patient['patient_category'],config('constances.patient_categories')) }}</td>
-                <td><a href="{{ url('/doctor/single/'.$patient['id']) }}" class="btn btn-primary">Make Appointment</a></td>
+                <td>
+                    <form method="get" action="{{route('show_make_appointment')}}">
+                        <input type="hidden" name="patient_id" value="{{$patient['id']}}">
+                        <button type="submit" class="btn btn-primary">Make Appointment</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
         </tbody>
