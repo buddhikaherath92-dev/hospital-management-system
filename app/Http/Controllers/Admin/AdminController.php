@@ -53,7 +53,8 @@ class AdminController extends Controller
             'name' => 'required|string',
             'user_type'=> 'required',
             'email' => 'required|email',
-            'password' => 'required|string|min:6'
+            'password' => 'required|string|min:6',
+            'speciality' => ''
         ]);
         $data['password'] = Hash::make($data['password']);
         $data['email_verified_at'] = Carbon::now();

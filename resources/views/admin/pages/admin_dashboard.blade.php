@@ -26,12 +26,35 @@
             </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect2">User Type</label>
-                    <select name="user_type" class="form-control">
+                    <select name="user_type" class="form-control" id="user_type_selection">
                         <option value="2">Doctor</option>
                         <option value="5">Nurse</option>
                         <option value="4">Lab</option>
                         <option value="3">Pharmacy</option>
                     </select>
+                </div>
+                <script type="text/javascript">
+                    $(document).ready(function(){
+                        var selected = $('#user_type_selection').val();
+                        if(selected === '2'){
+                            $('#based_on_type').show();
+                        }else{
+                            $('#based_on_type').hide();
+                        }
+                        $("#user_type_selection").change(function(){
+                            var selected = $(this).children("option:selected").val();
+                            if(selected === '2'){
+                                $('#based_on_type').show();
+                            }else{
+                                $('#based_on_type').hide();
+                            }
+                        });
+                    });
+                </script>
+                <div class="form-group" id="based_on_type">
+                    <label for="speciality">Speciality</label>
+                    <input type="text" class="form-control" name="speciality" id="speciality"
+                           placeholder="Enter Doctor Speciality">
                 </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
