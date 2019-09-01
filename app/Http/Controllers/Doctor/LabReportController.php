@@ -17,7 +17,8 @@ class LabReportController extends Controller
     public function store(Request $request){
 
         if(request('diagnose_id') === null){
-            return redirect()->back()->withErrors('You have to add Diagnose record first !');
+            return redirect()->back()->with('active_tab', 'request_lab_report')
+                ->withErrors('You have to add Diagnose record first !');
         }
 
         $validatedData = $request->validate([
@@ -31,6 +32,8 @@ class LabReportController extends Controller
             'patient_id'=>$request->patient_id,
             'diagnose_id'=>request('diagnose_id'),
         ]);
-        return redirect()->back()->with('diagnose_id',request('diagnose_id'))->with('message',$validatedData['report-title'].' report requested successfully !');
+        return redirect()->back()->with('diagnose_id',request('diagnose_id'))
+            ->with('message',$validatedData['report-title'].' report requested successfully !')
+            ->with('active_tab', 'add_events');
     }
 }

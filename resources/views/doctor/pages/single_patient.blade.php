@@ -35,12 +35,14 @@
            <div class="card-header">
                <ul class="nav nav-tabs card-header-tabs" role="tablist">
                    <li class="nav-item">
-                       <a class="nav-link active" data-toggle="tab" href="#add_diagnose">
+                       <a class="nav-link {{!session('active_tab') || session('active_tab') === 'add_diagnose' ? 'active' : '' }}"
+                          data-toggle="tab" href="#add_diagnose">
                            Add Diagnose
                        </a>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link" data-toggle="tab" href="#request_lab_report">
+                       <a class="nav-link {{session('active_tab') && session('active_tab') === 'request_lab_report' ? 'active' : '' }}"
+                          data-toggle="tab" href="#request_lab_report">
                            Request Lab Reports
                        </a>
                    </li>
@@ -50,7 +52,8 @@
                        </a>
                    </li>
                    <li class="nav-item">
-                       <a class="nav-link" data-toggle="tab" href="#add_events">
+                       <a class="nav-link {{session('active_tab') && session('active_tab') === 'add_events' ? 'active' : '' }}"
+                          data-toggle="tab" href="#add_events">
                            Add Events
                        </a>
                    </li>
@@ -58,24 +61,29 @@
            </div>
            <div class="card-body">
                <div class="tab-content">
-                   <div id="add_diagnose" class="container tab-pane active">
+                   @if(session('success'))
+                       <div class="alert alert-success alert-dismissible fade show" role="alert">
+                           <strong>{{session('success')}}</strong>
+                           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                           </button>
+                       </div>
+                   @elseif ($errors->any())
+                       <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                           <ul>
+                               @foreach ($errors->all() as $error)
+                                   <li>{{ $error }}</li>
+                               @endforeach
+                           </ul>
+                           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                               <span aria-hidden="true">&times;</span>
+                           </button>
+                       </div>
+                   @endif
+                   <div id="add_diagnose"
+                        class="container tab-pane {{ !session('active_tab') || session('active_tab') === 'add_diagnose' ? 'active' : 'fade' }}">
                        <form action="{{ route('save_diagnose') }}" method="post">
                            {{ csrf_field() }}
-                           @if(session('success'))
-                               <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                   <strong>{{session('success')}}</strong>
-                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                       <span aria-hidden="true">&times;</span>
-                                   </button>
-                               </div>
-                           @elseif(session('errors'))
-                               <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                   <strong>{{session('errors')}}</strong>
-                                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                       <span aria-hidden="true">&times;</span>
-                                   </button>
-                               </div>
-                           @endif
                            <input type="text" name="patient_id" value="{{ $patient['id'] }}" hidden>
                            <label>Diagnose :</label>
                            <textarea name="diagnose" class="form-control"></textarea>
@@ -118,7 +126,8 @@
                            </div>
                        </form>
                    </div>
-                   <div id="request_lab_report" class="container tab-pane fade">
+                   <div id="request_lab_report"
+                        class="container tab-pane {{session('active_tab') && session('active_tab') === 'request_lab_report' ? 'active' : 'fade' }}">
                        <form action="{{ route('request_report') }}" method="post">
                            {{ csrf_field() }}
                            @if(session('message'))
@@ -166,7 +175,7 @@
                            </tbody>
                        </table>
                    </div>
-                   <div id="add_events" class="container tab-pane fade">
+                   <div id="add_events" class="container tab-pane {{session('active_tab') && session('active_tab') === 'add_events' ? 'active' : 'fade' }}">
                        <form action="{{route('add_event')}}" method="post">
                            {{csrf_field()}}
                            <div class="form-row">

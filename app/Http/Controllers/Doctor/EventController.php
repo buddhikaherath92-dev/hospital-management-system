@@ -44,7 +44,7 @@ class EventController extends Controller
         Event::create($data);
         $user = User::find((int)request('patient_id'));
         $user->notify(new NewEventAdded());
-        return redirect()->back();
+        return redirect()->back()->with('active_tab', 'add_events')->withSuccess('Event Added Successfully !');
     }
 
 

@@ -60,7 +60,8 @@ class DiagnoseController extends Controller
                 DiagnoseValue::create($diagnoseValues);
             }
             DB::commit();
-            return redirect()->back()->with('diagnose_id',$result['id'])->withSuccess('Diagnose Added Successfully !');
+            return redirect()->back()->with('diagnose_id',$result['id'])->withSuccess('Diagnose Added Successfully !')
+                ->with('active_tab', 'add_diagnose');
         }catch (Exception $exception){
             DB::rollback();
             return redirect()->back()->withErrors('Something went wrong !');
